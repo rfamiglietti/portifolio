@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Romulo | @daquebrada.dev</title>
+  </head>
+  <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          'dark-primary': '#0a0b1f',
+          'dark-secondary': '#17193b',
+          'blue-neon': '#00aaff',
+          'purple-neon': '#9333ea',
+        },
+        boxShadow: {
+          'neon-blue': '0 0 10px #00aaff, 0 0 20px #00aaff',
+          'neon-purple': '0 0 10px #9333ea, 0 0 20px #9333ea',
+        },
+      }
+    }
+  }
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
