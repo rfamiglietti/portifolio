@@ -86,15 +86,15 @@ const Home = () => {
           <div className="relative w-72 h-72 md:w-96 md:h-96">
             <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-neon to-purple-neon opacity-50 blur-xl"></div>
             <img
-              src="/romulo-perfil.jpg" 
-              alt="Romulo Pereira Famiglietti"
+              src="imgperfil2.jpeg" 
+              alt="perfil.jpeg"
               className="relative w-full h-full object-cover rounded-full border-4 border-blue-neon/50 shadow-neon-blue transition-shadow duration-500 hover:shadow-neon-purple"
             />
           </div>
         </motion.div>
       </div>
     </SectionWrapper>
-  );
+  )
 };
 
 export default Home;
