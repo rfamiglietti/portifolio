@@ -11,3 +11,5 @@ export default defineConfig({
     outDir: 'dist', // Diretório padrão de saída do build
   },
 });
+
+
