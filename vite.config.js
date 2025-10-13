@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 // O nome do repositório é usado como caminho base para o deploy
-const repoName = 'portfolio-romulo'; 
+const repoName = 'portifolio'; 
 
 export default defineConfig({
   plugins: [react()],

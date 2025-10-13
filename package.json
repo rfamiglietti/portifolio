@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
 
-  "homepage": "https://rfamiglietti.github.io/portfolio-romulo/", 
+  "homepage": "https://rfamiglietti.github.io/portifolio/", 
   
   "scripts": {
     "dev": "vite",
