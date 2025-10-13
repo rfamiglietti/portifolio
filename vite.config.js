@@ -1,15 +1,16 @@
+// vite.config.js
+
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-// O nome do repositório é usado como caminho base para o deploy
-const repoName = 'portifolio'; 
+// REMOVA a variável repoName se for usar o caminho relativo
+// const repoName = 'portifolio'; 
 
 export default defineConfig({
   plugins: [react()],
-  base: `/${repoName}/`, // Adiciona /portfolio-romulo/ como base URL para todos os assets
+  // MUDE o caminho base para './' (Ponto/Caminho Relativo)
+  base: './', 
   build: {
-    outDir: 'dist', // Diretório padrão de saída do build
+    outDir: 'dist', 
   },
 });
-
-
