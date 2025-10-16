@@ -39,8 +39,8 @@ const About = () => {
         >
           <div className="p-4 border-2 border-purple-neon rounded-xl shadow-neon-purple/50 bg-dark-secondary">
             <img
-              src="perfil.jpeg" 
-              alt="Romulo"
+              src="romulodev.jpeg" 
+              alt="romulo"
               className="w-full h-auto rounded-lg"
             />
           </div>
