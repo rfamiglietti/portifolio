@@ -23,9 +23,9 @@ const Home = () => {
 
   // ATUALIZE COM SEUS LINKS
   const socialLinks = [
-    { icon: FaGithub, href: 'https://github.com/RomuloPF' },
-    { icon: FaLinkedinIn, href: 'https://linkedin.com/in/RomuloPF' },
-    { icon: FaInstagram, href: 'https://www.instagram.com/daquebrada.dev' },
+    { icon: FaGithub, href: 'https://github.com/rfamiglietti' },
+    { icon: FaLinkedinIn, href: 'https://linkedin.com/in/romulopfami' },
+    { icon: FaInstagram, href: 'https://www.instagram.com/r_famiglietti' },
   ];
 
   return (
@@ -41,13 +41,14 @@ const Home = () => {
             className="text-5xl md:text-7xl font-extrabold mb-6 leading-tight font-display"
             variants={item}
           >
-            Transformando <span className="text-blue-neon">código</span> em{' '}
-            <span className="text-purple-neon">revolução digital</span>
+            <h1 className="text-4xl md:text-6xl font-extrabold leading-tight">
+              <span className="text-white">Transformando</span> <span className="text-blue-neon">código</span> <span className="text-white">em</span> <span className="text-purple-neon">revolução digital</span>
+            </h1>
           </motion.h1>
 
           <motion.p className="text-xl text-gray-300 mb-8" variants={item}>
-            Olá, eu sou **Romulo Pereira Famiglietti**! Estudante de Engenharia de Software
-            trazendo inovação tecnológica direto da quebrada.
+            Olá, eu sou Romulo Pereira Famiglietti! Estudante de Engenharia de Software
+            com sede de aprender e tranformar ideias em códiogo.
           </motion.p>
 
           <motion.div className="flex space-x-4 mb-10" variants={item}>

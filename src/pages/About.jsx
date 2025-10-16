@@ -54,7 +54,7 @@ const About = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <p className="text-lg text-gray-300 mb-6 leading-relaxed">
-            Sou um entusiasta da tecnologia nascido e criado na periferia, transformando desafios em oportunidades através do **código**. Atualmente cursando **Engenharia de Software** e formado como **Técnico em Desenvolvimento de Sistemas**, meu objetivo é democratizar o acesso à tecnologia de qualidade e mostrar o talento que emerge da comunidade.
+            Sou um entusiasta da tecnologia nascido e criado na periferia, transformando desafios em oportunidades através do código. Atualmente cursando Engenharia de Software e formado como Técnico em Desenvolvimento de Sistemas, meu objetivo é democratizar o acesso à tecnologia de qualidade e mostrar o talento que emerge da comunidade.
           </p>
           <p className="text-lg text-gray-300 mb-8 leading-relaxed">
             Acredito que a inovação tecnológica deve ser acessível a todos, e é por isso que trago a essência **da quebrada** para cada linha de código que escrevo: **autenticidade, resiliência e foco no resultado**.
