@@ -28,7 +28,7 @@ const Footer = () => {
         &copy; {new Date().getFullYear()} Todos os direitos reservados.
       </p>
       <p className="text-sm text-purple-neon mt-2">
-        Feito por <span className="font-bold text-blue-neon">Romulo Pereira Famiglietti</span> 💻
+        Feito por <span className="font-bold text-blue-neon">Rômulo Pereira Famiglietti</span> 💻
       </p>
     </footer>
   );

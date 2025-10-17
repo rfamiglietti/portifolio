@@ -47,7 +47,7 @@ const Home = () => {
           </motion.h1>
 
           <motion.p className="text-xl text-gray-300 mb-8" variants={item}>
-            Olá, eu sou Romulo Pereira Famiglietti! Estudante de Engenharia de Software
+            Olá, eu sou Rômulo Pereira Famiglietti! Estudante de Engenharia de Software
             com sede de aprender e tranformar ideias em códiogo.
           </motion.p>
 
