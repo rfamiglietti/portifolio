@@ -55,7 +55,7 @@ const Home = () => {
             <ScrollLink to="projects" smooth={true} duration={500} offset={-80}>
               <NeonButton primary={true}>Ver Projetos</NeonButton>
             </ScrollLink>
-            <a href="/cv-romulo.pdf" download>
+            <a href="/cvportifolio.pdf" download>
               <NeonButton primary={false}>Baixar Currículo (PDF)</NeonButton>
             </a>
           </motion.div>
