@@ -1,22 +1,17 @@
 {
-  "name": "portfolio-romulo",
+  "name": "portifolio",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-
-  "homepage": "https://rfamiglietti.github.io/portifolio/", 
-  
+  "homepage": "https://rfamiglietti.github.io/portifolio/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    
-  
-    "predeploy": "npm run build", 
-    "deploy": "gh-pages -d dist" 
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
-  
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "framer-motion": "^12.23.22",
