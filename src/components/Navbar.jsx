@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { Link as ScrollLink, scroller } from 'react-scroll';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiMenu, FiX } from 'react-icons/fi';
+import { FiMenu, FiX, FiHome, FiUser, FiCode, FiBriefcase, FiMail } from 'react-icons/fi';
+import ThemeToggle from './ThemeToggle';
 
+// 🚨 NOVO ÍCONES PARA SIDEBAR
 const navItems = [
-  { name: 'Home', target: 'home' },
-  { name: 'Sobre', target: 'about' },
-  { name: 'Projetos', target: 'projects' },
-  { name: 'Serviços', target: 'services' },
-  { name: 'Contato', target: 'contact' },
+  { name: 'Home', target: 'home', icon: FiHome },
+  { name: 'Sobre', target: 'about', icon: FiUser },
+  { name: 'Projetos', target: 'projects', icon: FiCode },
+  { name: 'Serviços', target: 'services', icon: FiBriefcase },
+  { name: 'Contato', target: 'contact', icon: FiMail },
 ];
 
 const Navbar = () => {
@@ -20,84 +22,124 @@ const Navbar = () => {
       duration: 800,
       delay: 0,
       smooth: 'easeInOutQuart',
-      offset: -80,
+      offset: 0, // Offset pode ser 0 ou pequeno agora
     });
     setActiveLink(target);
     setIsOpen(false);
   };
 
   const linkClasses = (target) =>
-    `cursor-pointer transition-colors duration-300 hover:text-blue-neon ${
-      activeLink === target ? 'text-blue-neon border-b-2 border-blue-neon font-bold' : 'text-white'
+    `flex items-center space-x-3 py-3 px-4 rounded-lg transition-all duration-300 ${
+      activeLink === target 
+        ? 'bg-blue-neon/20 text-blue-neon font-bold shadow-lg shadow-blue-neon/30' 
+        : 'text-gray-400 hover:text-white hover:bg-dark-secondary/50'
     }`;
 
-  const MobileMenu = () => (
-    <motion.div
-      initial={{ opacity: 0, y: -50 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -50 }}
-      transition={{ duration: 0.2 }}
-      className="absolute top-full left-0 w-full bg-dark-secondary shadow-lg z-40 p-4 lg:hidden"
-    >
-      {navItems.map((item) => (
-        <ScrollLink
-          key={item.name}
-          to={item.target}
-          spy={true}
-          smooth={true}
-          offset={-80}
-          duration={500}
-          onSetActive={() => setActiveLink(item.target)}
-          className="block py-2 text-center text-lg hover:text-purple-neon transition-colors duration-300"
-          onClick={() => scrollTo(item.target)}
-        >
-          {item.name}
-        </ScrollLink>
-      ))}
-    </motion.div>
+  // 🚨 SIDEBAR DESKTOP (Fixa na lateral esquerda)
+  const SidebarDesktop = () => (
+    <div className="fixed top-0 left-0 h-full w-20 bg-dark-primary z-50 border-r border-purple-neon/20 hidden lg:flex flex-col items-center justify-between py-6">
+      
+      {/* Logo/Marca */}
+      <ScrollLink
+        to="home"
+        smooth={true}
+        duration={500}
+        onClick={() => setActiveLink('home')}
+        className="text-xl font-display font-bold cursor-pointer text-purple-neon hover:text-blue-neon transition-colors duration-300 mb-8"
+      >
+        @
+      </ScrollLink>
+      
+      {/* Links Principais */}
+      <nav className="flex flex-col space-y-4 flex-grow items-center">
+        {navItems.map((item) => (
+          <ScrollLink
+            key={item.name}
+            to={item.target}
+            spy={true}
+            smooth={true}
+            offset={0}
+            duration={500}
+            onSetActive={() => setActiveLink(item.target)}
+            className={`cursor-pointer w-14 h-14 flex items-center justify-center text-2xl ${linkClasses(item.target)}`}
+          >
+            <item.icon />
+          </ScrollLink>
+        ))}
+      </nav>
+
+      {/* Theme Toggle no Rodapé da Sidebar */}
+      <div className="mt-8">
+        <ThemeToggle />
+      </div>
+
+    </div>
   );
 
-  return (
-    <header className="fixed top-0 left-0 w-full bg-dark-primary/95 backdrop-blur-sm z-50 shadow-md border-b border-blue-neon/20">
-      <div className="max-w-7xl mx-auto px-5 h-20 flex justify-between items-center">
+  // 🚨 NAVBAR MOBILE (Continua no topo, mas com hambúrguer)
+  const NavbarMobile = () => (
+    <header className="fixed top-0 left-0 w-full h-20 bg-dark-primary/95 backdrop-blur-sm z-50 shadow-md border-b border-blue-neon/20 lg:hidden">
+      <div className="max-w-7xl mx-auto px-5 h-full flex justify-between items-center">
         <ScrollLink
           to="home"
           smooth={true}
           duration={500}
           onClick={() => setActiveLink('home')}
-          className="text-2xl font-display font-bold cursor-pointer text-purple-neon hover:text-blue-neon transition-colors duration-300"
+          className="text-2xl font-display font-bold cursor-pointer text-purple-neon"
         >
           @daquebrada.dev
         </ScrollLink>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden lg:flex space-x-8">
-          {navItems.map((item) => (
-            <ScrollLink
-              key={item.name}
-              to={item.target}
-              spy={true}
-              smooth={true}
-              offset={-80}
-              duration={500}
-              onSetActive={() => setActiveLink(item.target)}
-              className={linkClasses(item.target)}
-            >
-              {item.name}
-            </ScrollLink>
-          ))}
-        </nav>
+        <div className="flex items-center space-x-4">
+          <ThemeToggle />
 
-        {/* Mobile Menu Button */}
-        <button
-          className="lg:hidden text-2xl text-blue-neon z-50"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          {isOpen ? <FiX /> : <FiMenu />}
-        </button>
+          <button
+            className="text-2xl text-blue-neon z-50"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {isOpen ? <FiX /> : <FiMenu />}
+          </button>
+        </div>
       </div>
-      <AnimatePresence>{isOpen && <MobileMenu />}</AnimatePresence>
     </header>
+  );
+
+  // 🚨 MENU LATERAL MOBILE (Abre do lado esquerdo quando hambúrguer é clicado)
+  const MobileMenuOverlay = () => (
+    <motion.div
+      initial={{ x: '-100%' }}
+      animate={{ x: 0 }}
+      exit={{ x: '-100%' }}
+      transition={{ duration: 0.3 }}
+      className="fixed inset-0 w-64 bg-dark-primary shadow-xl z-50 pt-20 flex flex-col items-start p-6"
+    >
+      <nav className="w-full flex flex-col space-y-2">
+        {navItems.map((item) => (
+          <ScrollLink
+            key={item.name}
+            to={item.target}
+            spy={true}
+            smooth={true}
+            offset={0}
+            duration={500}
+            onSetActive={() => setActiveLink(item.target)}
+            className={`cursor-pointer w-full ${linkClasses(item.target)}`}
+            onClick={() => scrollTo(item.target)}
+          >
+            <item.icon className="text-xl" />
+            <span>{item.name}</span>
+          </ScrollLink>
+        ))}
+      </nav>
+    </motion.div>
+  );
+
+  return (
+    <>
+      <SidebarDesktop />
+      <NavbarMobile />
+      <AnimatePresence>{isOpen && <MobileMenuOverlay />}</AnimatePresence>
+    </>
   );
 };
 
