@@ -18,7 +18,7 @@ function App() {
          Adicionado: padding-left (pl-0) que será grande (pl-20) apenas no desktop.
          O padding é adicionado na classe 'lg:pl-[80px]' (ou pl-20) 
          para afastar o conteúdo da Sidebar. */}
-      <main className="pl-0 lg:pl-20"> 
+      <main className="pl-0 lg:pl-16"> 
         <Home />
         <About />
         <Projects />

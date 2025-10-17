@@ -4,9 +4,9 @@ import { FaGithub, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
 const Footer = () => {
   // ATUALIZE COM SEUS LINKS
   const socialLinks = [
-    { icon: FaGithub, href: 'https://github.com/RomuloPF' },
-    { icon: FaLinkedinIn, href: 'https://linkedin.com/in/RomuloPF' },
-    { icon: FaInstagram, href: 'https://www.instagram.com/daquebrada.dev' },
+    { icon: FaGithub, href: 'https://github.com/rfamiglietti' },
+    { icon: FaLinkedinIn, href: 'https://linkedin.com/in/romulopfami' },
+    { icon: FaInstagram, href: 'https://www.instagram.com/r_famiglietti' },
   ];
 
   return (
@@ -28,7 +28,7 @@ const Footer = () => {
         &copy; {new Date().getFullYear()} Todos os direitos reservados.
       </p>
       <p className="text-sm text-purple-neon mt-2">
-        Feito por <span className="font-bold text-blue-neon">@daquebrada.dev</span> 💻
+        Feito por <span className="font-bold text-blue-neon">Romulo Pereira Famiglietti</span> 💻
       </p>
     </footer>
   );
