@@ -87,7 +87,7 @@ const Navbar = () => {
           onClick={() => setActiveLink('home')}
           className="text-2xl font-display font-bold cursor-pointer text-purple-neon"
         >
-          @daquebrada.dev
+          Rômulo P. Famiglietti | Desenvolvedor
         </ScrollLink>
 
         <div className="flex items-center space-x-4">
