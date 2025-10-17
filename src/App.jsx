@@ -12,7 +12,7 @@ function App() {
     <div className="min-h-screen bg-dark-primary overflow-x-hidden">
       <Navbar />
 
-      <main className="pt-20">
+      <main className="pt-16">
         <Home />
         <About />
         <Projects />
