@@ -39,7 +39,7 @@ const About = () => {
         >
           <div className="p-4 border-2 border-purple-neon rounded-xl shadow-neon-purple/50 bg-dark-secondary">
             <img
-              src="romulodev.jpeg" 
+              src="" 
               alt="romulo"
               className="w-full h-auto rounded-lg"
             />
