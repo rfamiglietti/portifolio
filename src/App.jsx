@@ -9,13 +9,11 @@ import Contact from './pages/Contact';
 
 function App() {
   return (
-    <div className="min-h-screen transition-colors duration-300 
-      bg-gray-50 text-gray-900 
-      dark:bg-[#0d1117] dark:text-white
-      
-      pb-20      /* Mobile: Espaço barra inferior */
-      lg:pb-0    /* Desktop: Sem espaço inferior */
-      lg:pl-20   /* Desktop: Espaço sidebar */
+    // VOLTAMOS AO BG-DARK FIXO E TEXTO BRANCO
+    <div className="bg-[#0d1117] min-h-screen text-white 
+      pb-20      /* Mobile */
+      lg:pb-0    /* Desktop */
+      lg:pl-20   /* Sidebar */
     ">
       
       <Navbar />
