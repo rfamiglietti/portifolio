@@ -11,20 +11,21 @@ const About = () => {
     visible: { opacity: 1, y: 0 }
   };
 
-  // Lista de Skills Atualizada (Incluindo seu Back-end!)
+  // Lista de Skills (Mantida)
   const skills = [
     { name: 'React', icon: FaReact, color: 'text-blue-400' },
     { name: 'JavaScript', icon: FaJs, color: 'text-yellow-400' },
     { name: 'Tailwind', icon: SiTailwindcss, color: 'text-teal-400' },
     { name: 'Python', icon: FaPython, color: 'text-blue-500' },
-    { name: 'Django', icon: SiDjango, color: 'text-green-600' },     // Adicionado: Seu forte no back
-    { name: 'PostgreSQL', icon: SiPostgresql, color: 'text-blue-300' }, // Adicionado: Banco de dados
-    { name: 'Git/GitHub', icon: FaGitAlt, color: 'text-red-500' },      // Essencial
-    { name: 'Arduino', icon: SiArduino, color: 'text-teal-600' },       // Seu diferencial de IoT
+    { name: 'Django', icon: SiDjango, color: 'text-green-600' },
+    { name: 'PostgreSQL', icon: SiPostgresql, color: 'text-blue-300' },
+    { name: 'Git/GitHub', icon: FaGitAlt, color: 'text-red-500' },
+    { name: 'Arduino', icon: SiArduino, color: 'text-teal-600' },
   ];
 
   return (
     <SectionWrapper id="about">
+      {/* pb-32 garante espaço para não cortar conteúdo no mobile */}
       <div className="flex flex-col lg:flex-row gap-16 items-center max-w-6xl mx-auto pb-32">
         
         {/* === LADO ESQUERDO: FOTO === */}
@@ -35,7 +36,7 @@ const About = () => {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          {/* Efeito de borda neon atrás da foto */}
+          {/* Efeito de borda neon */}
           <div className="absolute inset-0 bg-gradient-to-tr from-blue-neon to-purple-neon rounded-xl blur-lg opacity-40 group-hover:opacity-60 transition-opacity duration-500"></div>
           
           <div className="relative p-2 bg-[#161b22] border border-gray-700 rounded-xl">
@@ -68,19 +69,24 @@ const About = () => {
           </div>
           
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            Da <span className="text-purple-neon">Quebrada</span> para o Mundo Tech
+            Código com <span className="text-purple-neon">Propósito</span>
           </h2>
 
           <div className="space-y-4 text-gray-300 text-lg leading-relaxed">
             <p>
-              Sou um entusiasta da tecnologia nascido e criado na periferia, transformando desafios em oportunidades através do código.
+              Transformo ideias em software, desafios em soluções e complexidade em clareza. Vejo o código não apenas como instrução para máquinas, mas como uma ponte entre problemas reais e experiências digitais bem construídas.
             </p>
             <p>
-              Formado como <strong className="text-white">Técnico em Desenvolvimento de Sistemas</strong> pelo <span className="text-blue-neon font-mono text-base bg-blue-900/20 px-1 rounded">SENAI Morvan Figueiredo</span> e graduando em Engenharia de Software, meu objetivo é democratizar o acesso à tecnologia de qualidade.
+              Sou <strong className="text-white">Técnico em Desenvolvimento de Sistemas</strong> pelo SENAI Morvan Figueiredo e graduando em <strong className="text-white">Engenharia de Software</strong>, sempre em busca de evoluir tecnicamente e criar soluções que façam sentido — para quem usa e para quem constrói.
             </p>
-            <p className="border-l-4 border-purple-neon pl-4 italic text-gray-400 bg-[#161b22] p-4 rounded-r-lg my-6">
-              "Trago a essência da quebrada para cada linha de código: <strong className="text-white">autenticidade, resiliência e foco no resultado</strong>."
+            <p>
+              Gosto de tecnologia que funciona, escala e resolve.
             </p>
+
+            {/* Citação / Mantra */}
+            <div className="border-l-4 border-purple-neon pl-4 italic text-white bg-[#161b22] p-4 rounded-r-lg my-6 font-medium shadow-lg shadow-purple-neon/5">
+              "Construir bem hoje para sustentar o amanhã."
+            </div>
           </div>
 
           {/* Grid de Skills */}
