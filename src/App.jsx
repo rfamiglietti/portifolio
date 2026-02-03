@@ -10,15 +10,17 @@ import Contact from './pages/Contact';
 
 function App() {
   return (
-    <div className="min-h-screen overflow-x-hidden text-gray-900 dark:text-white">
-      {/* Navbar será a Sidebar fixa */}
-      <Navbar /> 
+    <div className="bg-[#0d1117] min-h-screen text-white 
+      pb-20      /* Mobile: Espaço para a barra inferior */
+      lg:pb-0    /* Desktop: Remove espaço inferior */
+      lg:pl-20   /* Desktop: Empurra o site 80px para a direita (tamanho da Sidebar) */
+    ">
+      
+      {/* ADICIONADO: O Componente Navbar precisa estar aqui */}
+      <Navbar />
 
-      {/* ALTERAÇÃO: Remevido: o padding-top. 
-         Adicionado: padding-left (pl-0) que será grande (pl-20) apenas no desktop.
-         O padding é adicionado na classe 'lg:pl-[80px]' (ou pl-20) 
-         para afastar o conteúdo da Sidebar. */}
-      <main className="pl-0 lg:pl-16"> 
+      {/* Removi o pl-16 extra para o conteúdo ficar alinhado corretamente */}
+      <main className="w-full"> 
         <Home />
         <About />
         <Projects />
@@ -30,4 +32,5 @@ function App() {
     </div>
   );
 }
+
 export default App;
