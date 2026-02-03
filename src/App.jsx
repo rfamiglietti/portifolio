@@ -1,4 +1,3 @@
-// src/App.jsx
 import React from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -10,16 +9,17 @@ import Contact from './pages/Contact';
 
 function App() {
   return (
-    <div className="bg-[#0d1117] min-h-screen text-white 
-      pb-20      /* Mobile: Espaço para a barra inferior */
-      lg:pb-0    /* Desktop: Remove espaço inferior */
-      lg:pl-20   /* Desktop: Empurra o site 80px para a direita (tamanho da Sidebar) */
+    <div className="min-h-screen transition-colors duration-300 
+      bg-gray-50 text-gray-900 
+      dark:bg-[#0d1117] dark:text-white
+      
+      pb-20      /* Mobile: Espaço barra inferior */
+      lg:pb-0    /* Desktop: Sem espaço inferior */
+      lg:pl-20   /* Desktop: Espaço sidebar */
     ">
       
-      {/* ADICIONADO: O Componente Navbar precisa estar aqui */}
       <Navbar />
 
-      {/* Removi o pl-16 extra para o conteúdo ficar alinhado corretamente */}
       <main className="w-full"> 
         <Home />
         <About />
