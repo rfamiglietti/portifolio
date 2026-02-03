@@ -25,7 +25,7 @@ const About = () => {
 
   return (
     <SectionWrapper id="about">
-      <div className="flex flex-col lg:flex-row gap-16 items-center max-w-6xl mx-auto">
+      <div className="flex flex-col lg:flex-row gap-16 items-center max-w-6xl mx-auto pb-32">
         
         {/* === LADO ESQUERDO: FOTO === */}
         <motion.div
