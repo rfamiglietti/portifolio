@@ -1,24 +1,41 @@
-/* O CDN cuida das diretivas @tailwind, mas precisamos das classes customizadas */
-body {
-  /* Usa as classes de cores customizadas definidas no index.html */
-  @apply bg-dark-primary text-white font-sans; 
-  scroll-behavior: smooth;
-  font-family: 'Poppins', sans-serif; /* Define Poppins como padrão */
+/* Arquivo: src/index.css */
+
+:root {
+  /* Paleta Dark Mode inspirada no VS Code / GitHub Dark */
+  --bg-primary: #0d1117;    /* Fundo principal */
+  --bg-secondary: #161b22;  /* Fundo de cards/sidebar */
+  --accent-color: #58a6ff;  /* Azul tech */
+  --text-main: #c9d1d9;     /* Texto padrão (não use branco puro) */
+  --text-muted: #8b949e;    /* Texto secundário/comentários */
+  
+  --font-main: 'Inter', sans-serif;
+  --font-code: 'JetBrains Mono', monospace;
 }
 
-/* Scrollbar Style para um toque tech */
-::-webkit-scrollbar {
-    width: 8px;
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  font-family: var(--font-main);
+  
+  /* O "Pulo do Gato": Background Grid Sutil */
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px; /* Tamanho dos quadrados da grid */
+  min-height: 100vh;
 }
-::-webkit-scrollbar-thumb {
-    background-color: #00aaff;
-    border-radius: 4px;
+
+/* Scrollbar estilo código */
+::-webkit-scrollbar {
+  width: 10px;
 }
 ::-webkit-scrollbar-track {
-    background-color: #17193b;
+  background: var(--bg-primary);
 }
-
-/* Classe para títulos ousados */
-.font-display {
-  font-family: 'Oswald', sans-serif;
+::-webkit-scrollbar-thumb {
+  background: var(--bg-secondary);
+  border: 1px solid var(--text-muted);
+  border-radius: 5px;
 }
