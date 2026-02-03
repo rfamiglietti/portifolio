@@ -56,7 +56,7 @@ const Services = () => {
           className="mb-16 text-center"
         >
           <span className="font-mono text-blue-neon text-lg tracking-wider">
-            04. // MINHAS COMPETÊNCIAS
+            03. // MINHAS COMPETÊNCIAS
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-white mt-2">
             O que posso <span className="text-purple-neon">Entregar</span>

@@ -42,7 +42,6 @@ const Navbar = () => {
               offset={-50}
               duration={500}
               onSetActive={() => setActiveNav(item.id)}
-              // CORREÇÃO AQUI: Adicionado 'items-center' para alinhar verticalmente
               className="relative group cursor-pointer p-3 lg:w-full flex items-center justify-center"
             >
               {/* Indicador Ativo (Barra Azul) */}
@@ -58,8 +57,8 @@ const Navbar = () => {
                 />
               )}
 
-              {/* Ícone */}
-              <div className={`text-2xl transition-all duration-300 ${
+              {/* CORREÇÃO AQUI: 'leading-none' remove a altura da fonte e 'flex' centraliza o SVG */}
+              <div className={`text-2xl leading-none flex items-center justify-center transition-all duration-300 ${
                 activeNav === item.id ? 'text-blue-neon scale-110' : 'text-gray-500 hover:text-gray-200'
               }`}>
                 <item.icon />

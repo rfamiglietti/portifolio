@@ -33,7 +33,7 @@ const Contact = () => {
         >
           {/* Tag decorativa estilo código */}
           <span className="font-mono text-blue-neon text-lg tracking-wider">
-            03. // VAMOS CONVERSAR?
+            04. // VAMOS CONVERSAR?
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-white mt-2">
             Entre em <span className="text-purple-neon">Contato</span>
