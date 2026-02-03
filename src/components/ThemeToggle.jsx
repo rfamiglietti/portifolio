@@ -1,48 +1,37 @@
-// src/components/ThemeToggle.jsx
-import React from 'react';
+import React, { useContext } from 'react';
+import { ThemeContext } from '../context/ThemeContext';
+import { FaSun, FaMoon } from 'react-icons/fa';
 import { motion } from 'framer-motion';
-import { useTheme } from '../context/ThemeContext'; // 🚨 Caminho Corrigido
-import { FiSun, FiMoon } from 'react-icons/fi';
 
-const ThemeToggle = ({ className }) => {
-  const { theme, toggleTheme } = useTheme();
-  const isDark = theme === 'dark';
+const ThemeToggle = () => {
+  const { theme, toggleTheme } = useContext(ThemeContext);
 
   return (
-    <motion.button
+    <button
       onClick={toggleTheme}
-      className={`relative w-16 h-8 rounded-full p-1 cursor-pointer transition-colors duration-300 shadow-lg ${
-        isDark ? 'bg-dark-secondary' : 'bg-gray-300'
-      } ${className}`}
-      aria-label="Toggle Dark/Light Mode"
-      whileTap={{ scale: 0.95 }}
+      className="relative p-2 rounded-lg bg-gray-800 hover:bg-gray-700 transition-colors border border-gray-700 group"
+      aria-label="Alternar Tema"
     >
-      {/* Container que desliza (Lua/Sol) */}
+      {/* Ícone Dinâmico com Animação */}
       <motion.div
-        className={`absolute top-1/2 -translate-y-1/2 w-6 h-6 rounded-full flex items-center justify-center text-xl shadow-md ${
-          isDark ? 'bg-purple-neon text-dark-primary' : 'bg-white text-yellow-500'
-        }`}
-        initial={false}
-        animate={{ x: isDark ? 'calc(100% + 4px)' : '0' }}
-        transition={{ type: 'spring', stiffness: 700, damping: 30 }}
+        key={theme} // A chave muda, disparando a animação
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: 20, opacity: 0 }}
+        transition={{ duration: 0.2 }}
       >
-        {isDark ? <FiMoon /> : <FiSun />}
+        {theme === 'dark' ? (
+          <FaSun className="text-yellow-400 text-xl" />
+        ) : (
+          <FaMoon className="text-blue-neon text-xl" />
+        )}
       </motion.div>
 
-      {/* Ícone de fundo (Sol) */}
-      <FiSun
-        className={`absolute left-1.5 top-1/2 -translate-y-1/2 text-lg transition-opacity duration-300 ${
-          isDark ? 'text-gray-500 opacity-50' : 'text-yellow-600 opacity-100'
-        }`}
-      />
-
-      {/* Ícone de fundo (Lua) */}
-      <FiMoon
-        className={`absolute right-1.5 top-1/2 -translate-y-1/2 text-lg transition-opacity duration-300 ${
-          isDark ? 'text-blue-neon opacity-100' : 'text-gray-400 opacity-0'
-        }`}
-      />
-    </motion.button>
+      {/* Tooltip (Dica ao passar o mouse) */}
+      <span className="absolute right-12 top-2 bg-gray-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none border border-gray-700">
+        Mudar para {theme === 'dark' ? 'Light' : 'Dark'} Mode
+      </span>
+    </button>
   );
 };
 
