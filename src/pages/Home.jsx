@@ -1,19 +1,63 @@
-// src/pages/Home.jsx
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
+import { FaGithub, FaLinkedinIn, FaInstagram, FaArrowRight, FaFileDownload } from 'react-icons/fa';
 import { Link as ScrollLink } from 'react-scroll';
 import SectionWrapper from '../components/SectionWrapper';
 import NeonButton from '../components/NeonButton';
 
 const Home = () => {
-  // Configurações de animação (Mantidas)
+  // === 1. CONFIGURAÇÃO DO EFEITO DE DIGITAÇÃO (TYPEWRITER) ===
+  const [text, setText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [loopNum, setLoopNum] = useState(0);
+  const [delta, setDelta] = useState(100);
+  
+  // Frases que vão ficar alternando
+  const toRotate = ["Full Stack Developer", "React & Django", "Engenharia de Software"];
+  const period = 2000;
+
+  useEffect(() => {
+    let ticker = setInterval(() => {
+      tick();
+    }, delta);
+
+    return () => clearInterval(ticker);
+  }, [text, delta]);
+
+  const tick = () => {
+    let i = loopNum % toRotate.length;
+    let fullText = toRotate[i];
+    let updatedText = isDeleting 
+      ? fullText.substring(0, text.length - 1) 
+      : fullText.substring(0, text.length + 1);
+
+    setText(updatedText);
+
+    if (isDeleting) {
+      setDelta(prevDelta => prevDelta / 2);
+    }
+
+    if (!isDeleting && updatedText === fullText) {
+      setIsDeleting(true);
+      setDelta(period);
+    } else if (isDeleting && updatedText === '') {
+      setIsDeleting(false);
+      setLoopNum(loopNum + 1);
+      setDelta(100);
+    }
+  };
+
+  // === 2. LINKS E DADOS (PRESERVADOS DO SEU CÓDIGO) ===
+  const socialLinks = [
+    { icon: FaGithub, href: 'https://github.com/rfamiglietti' },
+    { icon: FaLinkedinIn, href: 'https://linkedin.com/in/romulopfami' },
+    { icon: FaInstagram, href: 'https://www.instagram.com/r_famiglietti' },
+  ];
+
+  // Configurações de animação
   const container = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1 },
-    },
+    visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
   };
 
   const item = {
@@ -21,83 +65,82 @@ const Home = () => {
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   };
 
-  // Seus links preservados
-  const socialLinks = [
-    { icon: FaGithub, href: 'https://github.com/rfamiglietti' },
-    { icon: FaLinkedinIn, href: 'https://linkedin.com/in/romulopfami' },
-    { icon: FaInstagram, href: 'https://www.instagram.com/r_famiglietti' },
-  ];
-
   return (
-    <SectionWrapper id="home">
-      <div className="flex flex-col lg:flex-row items-center justify-between min-h-[calc(100vh-80px)] pt-20 lg:pt-0">
+    <SectionWrapper id="home" className="min-h-screen flex items-center justify-center pt-0 relative">
+      
+      {/* === BACKGROUND DECORATIVO (LUZES NEON) === */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+        <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-blue-neon/10 rounded-full blur-[120px]" />
+        <div className="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] bg-purple-neon/10 rounded-full blur-[100px]" />
+      </div>
+
+      <div className="w-full max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-between relative z-10">
         
         {/* === COLUNA DA ESQUERDA (Texto) === */}
         <motion.div
           variants={container}
           initial="hidden"
           animate="visible"
-          className="lg:w-1/2"
+          className="lg:w-1/2 text-center lg:text-left"
         >
-          {/* 1. Saudação estilo comentário de código */}
-          <motion.div variants={item} className="mb-2">
-             <span style={{ fontFamily: 'JetBrains Mono, monospace', color: '#8b949e', fontSize: '1.1rem' }}>
+          {/* Saudação estilo comentário */}
+          <motion.div variants={item} className="mb-4 inline-block px-3 py-1 bg-[#161b22] border border-gray-700 rounded-full">
+             <span className="font-mono text-gray-400 text-sm">
                // Welcome to my portfolio
              </span>
           </motion.div>
 
-          {/* 2. Nome Principal (Corrigido o erro de H1 dentro de H1) */}
+          {/* Nome Principal */}
           <motion.h1
-            className="text-5xl md:text-7xl font-extrabold mb-4 leading-tight font-display text-white"
+            className="text-5xl md:text-7xl font-extrabold mb-6 leading-tight font-display text-white"
             variants={item}
           >
-            Rômulo <span className="text-blue-neon">Famiglietti</span>
+            Rômulo <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-neon to-purple-neon">Famiglietti</span>
           </motion.h1>
 
-          {/* 3. Subtítulo estilo Tag HTML (Visual Tech) */}
-          <motion.div 
-            variants={item} 
-            className="mb-6 text-lg md:text-xl font-bold" 
-            style={{ fontFamily: 'JetBrains Mono, monospace' }}
-          >
-             <span className="text-gray-500">&lt;</span>
-             <span className="text-purple-neon">Developer </span>
-             stack
-             <span className="text-blue-neon">=</span>
-             <span className="text-green-400">"FullStack"</span>
-             <span className="text-gray-500"> /&gt;</span>
+          {/* Subtítulo com Efeito de Digitação (NOVO) */}
+          <motion.div variants={item} className="h-8 mb-6 font-mono text-xl md:text-2xl text-gray-300">
+            &gt; {text}
+            <span className="animate-pulse text-purple-neon">|</span>
           </motion.div>
 
-          {/* 4. Descrição Otimizada (Sem o erro de digitação) */}
-          <motion.p className="text-xl text-gray-300 mb-8 max-w-lg" variants={item}>
+          {/* Descrição (Preservada) */}
+          <motion.p className="text-xl text-gray-400 mb-8 max-w-lg mx-auto lg:mx-0 leading-relaxed" variants={item}>
             Estudante de Engenharia de Software transformando ideias em 
             <strong className="text-white"> código</strong>. Especialista em criar interfaces com 
             <strong className="text-blue-neon"> React</strong> e sistemas robustos com 
             <strong className="text-purple-neon"> Django</strong>.
           </motion.p>
 
-          {/* 5. Botões de Ação (Links preservados) */}
-          <motion.div className="flex space-x-4 mb-10" variants={item}>
+          {/* Botões de Ação (Links preservados) */}
+          <motion.div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10" variants={item}>
             <ScrollLink to="projects" smooth={true} duration={500} offset={-80}>
-              <NeonButton primary={true}>Ver Projetos</NeonButton>
+              <NeonButton primary={true}>
+                <span className="flex items-center gap-2">
+                  Ver Projetos <FaArrowRight />
+                </span>
+              </NeonButton>
             </ScrollLink>
             
-            {/* Link do PDF preservado exatamente como no seu original */}
-            <a href="/cvportifolio.pdf" download>
-              <NeonButton primary={false}>Baixar Currículo (PDF)</NeonButton>
+            <a href="/public/cvportifolio.pdf" download="Romulo_CV.pdf">
+              <NeonButton primary={false}>
+                <span className="flex items-center gap-2">
+                  Baixar Currículo <FaFileDownload />
+                </span>
+              </NeonButton>
             </a>
           </motion.div>
 
-          {/* 6. Redes Sociais */}
-          <motion.div className="flex space-x-6" variants={item}>
+          {/* Redes Sociais (Preservadas) */}
+          <motion.div className="flex gap-6 justify-center lg:justify-start" variants={item}>
             {socialLinks.map((link, index) => (
               <motion.a
                 key={index}
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-3xl text-gray-400 hover:text-purple-neon transition-colors duration-300"
-                whileHover={{ scale: 1.2, color: '#9333ea' }}
+                className="text-2xl text-gray-400 hover:text-white transition-colors duration-300"
+                whileHover={{ scale: 1.2, color: '#58a6ff' }}
                 whileTap={{ scale: 0.9 }}
               >
                 <link.icon />
@@ -106,26 +149,35 @@ const Home = () => {
           </motion.div>
         </motion.div>
 
-        {/* === COLUNA DA DIREITA (Imagem) === */}
+        {/* === COLUNA DA DIREITA (Imagem Preservada + Efeito Neon) === */}
         <motion.div
-          className="lg:w-1/2 mt-12 lg:mt-0 flex justify-center"
+          className="lg:w-1/2 mt-16 lg:mt-0 flex justify-center"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.5 }}
         >
-          <div className="relative w-72 h-72 md:w-96 md:h-96">
-            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-neon to-purple-neon opacity-50 blur-xl"></div>
+          <div className="relative w-72 h-72 md:w-96 md:h-96 group">
+            {/* Círculos de brilho animados atrás da foto */}
+            <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-blue-neon to-purple-neon opacity-20 blur-2xl group-hover:opacity-40 transition-opacity duration-500 animate-pulse"></div>
+            
+            {/* Sua foto original */}
             <img
               src="imgperfil2.jpeg" 
               alt="Rômulo Famiglietti"
-              className="relative w-full h-full object-cover rounded-full border-4 border-blue-neon/50 shadow-neon-blue transition-shadow duration-500 hover:shadow-neon-purple"
+              className="relative w-full h-full object-cover rounded-full border-2 border-gray-700 group-hover:border-blue-neon transition-colors duration-500 shadow-2xl"
             />
+
+            {/* Badge Flutuante (Decorativo) */}
+            <div className="absolute bottom-4 right-4 bg-[#0d1117] border border-gray-700 px-4 py-2 rounded-lg shadow-xl flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                <span className="text-xs font-mono text-white">Open to work</span>
+            </div>
           </div>
         </motion.div>
 
       </div>
     </SectionWrapper>
-  )
+  );
 };
 
 export default Home;
