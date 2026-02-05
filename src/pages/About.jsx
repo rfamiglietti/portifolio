@@ -3,9 +3,10 @@ import { motion } from 'framer-motion';
 import { 
   SiHtml5, SiCss3, SiJavascript, SiPython, SiCplusplus, 
   SiArduino, SiGit, SiGithub, SiTailwindcss, SiFigma, 
-  SiDjango, SiMicrosoft, SiNodedotjs, SiVisualstudiocode, // <--- MUDANÇA AQUI (SiMicrosoft)
+  SiDjango, SiNodedotjs, SiVisualstudiocode, // Removi SiMicrosoft daqui
   SiReact, SiN8n 
 } from 'react-icons/si';
+import { FaDatabase } from 'react-icons/fa'; // Adicionei este import seguro
 import SectionWrapper from '../components/SectionWrapper';
 
 const About = () => {
@@ -27,7 +28,8 @@ const About = () => {
         { name: "Python", icon: SiPython, color: "text-blue-300" },
         { name: "Django", icon: SiDjango, color: "text-green-500" },
         { name: "Node.js", icon: SiNodedotjs, color: "text-green-600" },
-        { name: "SQL Server", icon: SiMicrosoft, color: "text-red-500" }, // <--- MUDANÇA AQUI
+        // Usei FaDatabase aqui para garantir que não quebre o build
+        { name: "SQL Server", icon: FaDatabase, color: "text-red-500" }, 
         { name: "C++", icon: SiCplusplus, color: "text-blue-600" },
       ]
     },
