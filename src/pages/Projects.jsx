@@ -5,6 +5,7 @@ import { projectsData } from '../data/projectsData';
 import SectionWrapper from '../components/SectionWrapper';
 import NeonButton from '../components/NeonButton';
 
+// Imports do Swiper
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
@@ -27,6 +28,7 @@ const Projects = () => {
           </h2>
          </div>
 
+         {/* === CARROSSEL SWIPER === */}
          <div className="mb-16 select-none relative group/slider">
            <Swiper
              modules={[Navigation, Pagination, Autoplay]}
@@ -47,6 +49,7 @@ const Projects = () => {
                <SwiperSlide key={project.id}>
                  <div className="bg-[#161b22] rounded-xl overflow-hidden border border-gray-800 h-[480px] flex flex-col hover:border-blue-neon/50 transition-all duration-300 group hover:shadow-[0_0_30px_rgba(88,166,255,0.1)]">
                     
+                    {/* Capa */}
                     <div className="h-60 relative overflow-hidden bg-gray-900 border-b border-gray-800">
                       {project.cover ? (
                         <img 
@@ -60,6 +63,7 @@ const Projects = () => {
                       <div className="absolute inset-0 bg-gradient-to-t from-[#161b22] to-transparent opacity-80"></div>
                     </div>
 
+                    {/* Conteúdo */}
                     <div className="p-6 flex flex-col flex-grow relative">
                        <h3 className="text-2xl font-bold text-white mb-3 line-clamp-1 group-hover:text-blue-neon transition-colors">{project.title}</h3>
                        
@@ -74,12 +78,18 @@ const Projects = () => {
                        </p>
 
                        <Link to={`/project/${project.id}`} className="mt-auto block">
-                         {/* === BOTÃO KEYCAP NO CARD === */}
+                         {/* === BOTÃO KEYCAP NO CARD (AZUL) === */}
                          <button className="
-                           w-full py-3 rounded-lg font-bold text-sm transition-all flex items-center justify-center gap-2
-                           bg-[#21262d] text-[#58a6ff] border border-[#30363d] border-b-[4px] border-b-black
-                           hover:bg-[#30363d] hover:text-white
-                           active:border-b-[1px] active:translate-y-[3px]
+                           w-full py-3 rounded-xl font-bold text-sm font-mono tracking-wider transition-all duration-150
+                           flex items-center justify-center gap-2
+                           
+                           /* Estilo Visual */
+                           bg-[#0d1117] text-[#58a6ff] 
+                           border-2 border-[#58a6ff] border-b-[6px]
+                           
+                           /* Interações */
+                           hover:brightness-125 hover:shadow-[0_0_15px_rgba(88,166,255,0.4)] hover:-translate-y-0.5
+                           active:border-b-[0px] active:translate-y-[6px] active:shadow-none
                          ">
                            VER DETALHES <FaArrowRight />
                          </button>
@@ -91,6 +101,7 @@ const Projects = () => {
            </Swiper>
          </div>
 
+         {/* Botão Ver Todos */}
          <div className="flex justify-center">
             <Link to="/all-projects">
               <NeonButton>
@@ -101,6 +112,7 @@ const Projects = () => {
 
       </div>
       
+      {/* Estilos das Setas do Carrossel (Também em formato Keycap) */}
       <style>{`
         .swiper-pagination-bullet { 
             background-color: #58a6ff; 
@@ -110,12 +122,11 @@ const Projects = () => {
             background-color: #bc8cff; opacity: 1; width: 20px; border-radius: 5px;
         }
 
-        /* === KEYCAP STYLE PARA SETAS (MANTIDO E REFORÇADO) === */
         .swiper-button-next, .swiper-button-prev {
             width: 50px; height: 50px;
             background-color: #21262d;
             border: 1px solid #30363d;
-            border-bottom: 5px solid #0d1117; /* A borda grossa que dá o 3D */
+            border-bottom: 5px solid #0d1117;
             border-radius: 12px;
             color: #58a6ff;
             transition: all 0.1s;
@@ -125,7 +136,6 @@ const Projects = () => {
         }
         .swiper-button-next::after, .swiper-button-prev::after { font-size: 20px; font-weight: bold; }
 
-        /* Efeito de Clique na Seta */
         .swiper-button-next:active, .swiper-button-prev:active {
             transform: translateY(4px);
             border-bottom-width: 1px;

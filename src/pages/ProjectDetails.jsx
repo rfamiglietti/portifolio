@@ -17,10 +17,12 @@ const ProjectDetails = () => {
 
   if (!project) return <div className="text-white text-center p-20">Carregando projeto...</div>;
 
-  // Classe utilitária para os botões Keycap
+  // Classe utilitária para os botões Keycap da Sidebar
   const keycapBtnClass = `
-    flex items-center justify-center gap-2 p-3 rounded-xl font-bold text-sm transition-all duration-100
-    border border-b-[5px] active:border-b-[2px] active:translate-y-[3px]
+    flex items-center justify-center gap-2 p-3 rounded-xl font-bold text-sm font-mono transition-all duration-150
+    bg-[#0d1117] border-2 border-b-[6px]
+    hover:brightness-125 hover:-translate-y-0.5
+    active:border-b-[0px] active:translate-y-[6px]
   `;
 
   return (
@@ -66,15 +68,17 @@ const ProjectDetails = () => {
 
             {/* === BOTÕES KEYCAP DA SIDEBAR === */}
             <div className="mt-auto pt-6 border-t border-gray-700 flex flex-col gap-4">
+               {/* Botão GitHub (Cinza) */}
                {project.github && (
                  <a href={project.github} target="_blank" rel="noopener noreferrer" 
-                    className={`${keycapBtnClass} bg-[#21262d] text-white border-[#30363d] border-b-black hover:bg-[#30363d]`}>
+                    className={`${keycapBtnClass} text-gray-300 border-gray-500 hover:shadow-[0_0_15px_rgba(255,255,255,0.2)]`}>
                    <FaGithub size={18} /> Ver Código Fonte
                  </a>
                )}
+               {/* Botão Demo (Azul) */}
                {project.demo && (
                  <a href={project.demo} target="_blank" rel="noopener noreferrer" 
-                    className={`${keycapBtnClass} bg-blue-600 text-white border-blue-500 border-b-blue-900 hover:bg-blue-500`}>
+                    className={`${keycapBtnClass} text-[#58a6ff] border-[#58a6ff] hover:shadow-[0_0_15px_rgba(88,166,255,0.4)]`}>
                    <FaExternalLinkAlt size={16} /> Acessar Projeto Online
                  </a>
                )}
