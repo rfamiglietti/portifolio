@@ -28,26 +28,25 @@ const Projects = () => {
          </div>
 
          {/* === CARROSSEL SWIPER === */}
-         <div className="mb-16 select-none relative w-full">
+         <div className="mb-16 select-none relative w-full px-8 md:px-12">
            <Swiper
              modules={[Navigation, Pagination, Autoplay]}
-             spaceBetween={20}
+             spaceBetween={30}
              slidesPerView={1}
              navigation={{ clickable: true }}
              pagination={{ clickable: true, dynamicBullets: true }}
              autoplay={{ delay: 6000, disableOnInteraction: false }}
              loop={true}
              breakpoints={{
-               0: { slidesPerView: 1, spaceBetween: 10 },
-               640: { slidesPerView: 1, spaceBetween: 20 },
-               768: { slidesPerView: 2, spaceBetween: 20 },
-               1024: { slidesPerView: 2.2, spaceBetween: 30 },
+               0: { slidesPerView: 1, spaceBetween: 20 },
+               768: { slidesPerView: 2, spaceBetween: 30 },
+               1024: { slidesPerView: 2.2, spaceBetween: 40 },
              }}
-             className="pb-20 pt-10 px-2"
+             className="pb-16 pt-4"
            >
              {sliderProjects.map((project) => (
                <SwiperSlide key={project.id} className="h-auto">
-                 <div className="bg-[#161b22] rounded-xl overflow-hidden border border-gray-800 h-[500px] flex flex-col hover:border-blue-neon/50 transition-all duration-300 group shadow-lg">
+                 <div className="bg-[#161b22] rounded-xl overflow-hidden border border-gray-800 h-[500px] flex flex-col hover:border-blue-neon/50 transition-all duration-300 group shadow-lg hover:shadow-blue-neon/10">
                     
                     {/* Capa */}
                     <div className="h-56 relative overflow-hidden bg-gray-900 border-b border-gray-800 shrink-0">
@@ -78,17 +77,12 @@ const Projects = () => {
                        </p>
 
                        <Link to={`/project/${project.id}`} className="mt-auto block w-full">
-                         {/* BOTÃO VER DETALHES (Sólido com animação de clique) */}
+                         {/* BOTÃO ORIGINAL (Estilo Link/Botão Simples) */}
                          <button className="
-                           w-full py-3 rounded-lg font-bold text-sm font-mono tracking-wider transition-all duration-100
+                           w-full py-3 rounded-lg font-bold text-sm font-mono tracking-wider transition-all duration-300
                            flex items-center justify-center gap-2
-                           bg-gray-800 text-white border border-gray-700
-                           
-                           /* Hover: Brilho Azul */
-                           hover:bg-blue-600 hover:border-blue-500 hover:shadow-lg hover:shadow-blue-900/40
-                           
-                           /* Active (Clique): Afunda levemente */
-                           active:scale-[0.96] active:bg-blue-700
+                           text-blue-neon border border-blue-neon/30 bg-blue-neon/5
+                           hover:bg-blue-neon hover:text-[#0d1117] hover:shadow-[0_0_15px_#58a6ff]
                          ">
                            VER DETALHES <FaArrowRight />
                          </button>
@@ -111,61 +105,46 @@ const Projects = () => {
 
       </div>
       
-      {/* === CSS DAS SETAS ESTILO KEYCAP BRANCO (IGUAL À IMAGEM) === */}
+      {/* === ESTILO DAS SETAS E PAGINAÇÃO === */}
       <style>{`
+        /* Paginação (Bolinhas) */
         .swiper-pagination-bullet { 
             background-color: #58a6ff !important; 
-            opacity: 0.3; width: 10px; height: 10px; transition: all 0.3s;
+            opacity: 0.3; width: 8px; height: 8px; transition: all 0.3s;
         }
         .swiper-pagination-bullet-active { 
             background-color: #bc8cff !important; 
-            opacity: 1; width: 20px; border-radius: 5px;
+            opacity: 1; width: 24px; border-radius: 4px;
         }
 
-        /* SETAS: Estilo Tecla Mecânica Branca/Preta */
+        /* SETAS DO CARROSSEL (Limpas e Afiadas) */
         .swiper-button-next, .swiper-button-prev {
-            width: 54px !important;
-            height: 54px !important;
-            
-            /* Fundo Preto */
-            background-color: #0d1117 !important;
-            
-            /* Borda Branca Fina */
-            border: 2px solid white !important;
-            
-            /* Borda Branca Grossa em Baixo (Efeito 3D) */
-            border-bottom: 6px solid white !important;
-            
-            border-radius: 14px !important;
-            color: white !important;
-            transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1) !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            z-index: 50;
-            opacity: 0.8;
+            color: #58a6ff !important; /* Cor Azul Neon */
+            background: rgba(13, 17, 23, 0.8) !important; /* Fundo escuro semi-transparente */
+            width: 45px !important;
+            height: 45px !important;
+            border-radius: 50% !important; /* Redondo */
+            border: 1px solid rgba(88, 166, 255, 0.3) !important;
+            backdrop-filter: blur(4px);
+            transition: all 0.3s ease !important;
         }
-
-        /* Hover: Fica mais brilhante/branco */
-        .swiper-button-next:hover, .swiper-button-prev:hover {
-            opacity: 1;
-            background-color: #161b22 !important;
-            transform: translateY(-2px); /* Levanta um pouquinho antes de clicar */
-        }
-
-        /* Clique (Active): Afunda */
-        .swiper-button-next:active, .swiper-button-prev:active {
-            transform: translateY(6px) !important; /* Desce */
-            border-bottom-width: 0px !important;   /* Borda grossa some */
-            transition: all 0.05s !important;
-        }
-
-        /* Ícone da seta */
+        
+        /* Ícone da seta (Tamanho) */
         .swiper-button-next::after, .swiper-button-prev::after {
-            font-size: 22px !important;
-            font-weight: bold !important;
+            font-size: 18px !important;
+            font-weight: 900 !important;
         }
 
+        /* Hover nas Setas */
+        .swiper-button-next:hover, .swiper-button-prev:hover {
+            color: #fff !important;
+            background: #58a6ff !important; /* Fica azul sólido ao passar o mouse */
+            box-shadow: 0 0 15px rgba(88, 166, 255, 0.6) !important;
+            transform: scale(1.1);
+            border-color: #58a6ff !important;
+        }
+
+        /* Oculta no mobile */
         @media (max-width: 640px) {
             .swiper-button-next, .swiper-button-prev { display: none !important; }
         }

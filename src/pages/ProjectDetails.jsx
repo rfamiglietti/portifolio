@@ -17,12 +17,10 @@ const ProjectDetails = () => {
 
   if (!project) return <div className="text-white text-center p-20">Carregando projeto...</div>;
 
-  // Classe utilitária para os botões Keycap da Sidebar
-  const keycapBtnClass = `
-    flex items-center justify-center gap-2 p-3 rounded-xl font-bold text-sm font-mono transition-all duration-150
-    bg-[#0d1117] border-2 border-b-[6px]
-    hover:brightness-125 hover:-translate-y-0.5
-    active:border-b-[0px] active:translate-y-[6px]
+  // Classe utilitária para botões padrão
+  const btnClass = `
+    flex items-center justify-center gap-2 p-3 rounded-lg font-bold text-sm font-mono transition-all duration-300
+    border hover:-translate-y-1 hover:shadow-lg
   `;
 
   return (
@@ -66,19 +64,17 @@ const ProjectDetails = () => {
               </div>
             )}
 
-            {/* === BOTÕES KEYCAP DA SIDEBAR === */}
+            {/* BOTÕES ORIGINAIS */}
             <div className="mt-auto pt-6 border-t border-gray-700 flex flex-col gap-4">
-               {/* Botão GitHub (Cinza) */}
                {project.github && (
                  <a href={project.github} target="_blank" rel="noopener noreferrer" 
-                    className={`${keycapBtnClass} text-gray-300 border-gray-500 hover:shadow-[0_0_15px_rgba(255,255,255,0.2)]`}>
+                    className={`${btnClass} text-gray-300 border-gray-600 bg-gray-800 hover:bg-white hover:text-black hover:border-white`}>
                    <FaGithub size={18} /> Ver Código Fonte
                  </a>
                )}
-               {/* Botão Demo (Azul) */}
                {project.demo && (
                  <a href={project.demo} target="_blank" rel="noopener noreferrer" 
-                    className={`${keycapBtnClass} text-[#58a6ff] border-[#58a6ff] hover:shadow-[0_0_15px_rgba(88,166,255,0.4)]`}>
+                    className={`${btnClass} text-white border-blue-600 bg-blue-600 hover:bg-blue-500 hover:border-blue-500 hover:shadow-blue-500/30`}>
                    <FaExternalLinkAlt size={16} /> Acessar Projeto Online
                  </a>
                )}

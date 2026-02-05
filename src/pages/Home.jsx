@@ -151,7 +151,7 @@ const Home = () => {
             <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-blue-neon to-purple-neon opacity-20 blur-2xl group-hover:opacity-40 transition-opacity duration-500 animate-pulse"></div>
             
             <img
-              src="imgperfil2.jpeg" 
+              src="devpixelart.png" 
               alt="Rômulo Famiglietti"
               className="relative w-full h-full object-cover rounded-full border-2 border-gray-700 group-hover:border-blue-neon transition-colors duration-500 shadow-2xl"
             />
