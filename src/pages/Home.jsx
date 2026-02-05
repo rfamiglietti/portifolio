@@ -1,132 +1,165 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { 
-  SiHtml5, SiCss3, SiJavascript, SiPython, SiCplusplus, 
-  SiArduino, SiGit, SiGithub, SiTailwindcss, SiFigma, 
-  SiDjango, SiNodedotjs, 
-  SiReact 
-} from 'react-icons/si';
-import { FaDatabase, FaCode } from 'react-icons/fa'; 
+import { FaGithub, FaLinkedinIn, FaInstagram, FaArrowRight, FaFileDownload } from 'react-icons/fa';
+import { Link as ScrollLink } from 'react-scroll';
 import SectionWrapper from '../components/SectionWrapper';
+import NeonButton from '../components/NeonButton';
 
-const About = () => {
+const Home = () => {
+  const [text, setText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [loopNum, setLoopNum] = useState(0);
+  const [delta, setDelta] = useState(100);
   
-  const skills = [
-    {
-      category: "Frontend",
-      techs: [
-        { name: "HTML5", icon: SiHtml5, color: "text-orange-500" },
-        { name: "CSS3", icon: SiCss3, color: "text-blue-500" },
-        { name: "JavaScript", icon: SiJavascript, color: "text-yellow-400" },
-        { name: "React", icon: SiReact, color: "text-blue-400" },
-        { name: "Tailwind", icon: SiTailwindcss, color: "text-cyan-400" },
-      ]
-    },
-    {
-      category: "Backend & Dados",
-      techs: [
-        { name: "Python", icon: SiPython, color: "text-blue-300" },
-        { name: "Django", icon: SiDjango, color: "text-green-500" },
-        { name: "Node.js", icon: SiNodedotjs, color: "text-green-600" },
-        { name: "SQL Server", icon: FaDatabase, color: "text-red-500" }, 
-        { name: "C++", icon: SiCplusplus, color: "text-blue-600" },
-      ]
-    },
-    {
-      category: "Ferramentas & Outros",
-      techs: [
-        { name: "Git", icon: SiGit, color: "text-orange-600" },
-        { name: "GitHub", icon: SiGithub, color: "text-white" },
-        { name: "VS Code", icon: FaCode, color: "text-blue-500" },
-        { name: "Figma", icon: SiFigma, color: "text-purple-400" },
-        { name: "Arduino", icon: SiArduino, color: "text-teal-500" },
-      ]
+  const toRotate = ["Full Stack Developer", "React & Django", "Engenharia de Software"];
+  const period = 2000;
+
+  useEffect(() => {
+    let ticker = setInterval(() => {
+      tick();
+    }, delta);
+
+    return () => clearInterval(ticker);
+  }, [text, delta]);
+
+  const tick = () => {
+    let i = loopNum % toRotate.length;
+    let fullText = toRotate[i];
+    let updatedText = isDeleting 
+      ? fullText.substring(0, text.length - 1) 
+      : fullText.substring(0, text.length + 1);
+
+    setText(updatedText);
+
+    if (isDeleting) {
+      setDelta(prevDelta => prevDelta / 2);
     }
+
+    if (!isDeleting && updatedText === fullText) {
+      setIsDeleting(true);
+      setDelta(period);
+    } else if (isDeleting && updatedText === '') {
+      setIsDeleting(false);
+      setLoopNum(loopNum + 1);
+      setDelta(100);
+    }
+  };
+
+  const socialLinks = [
+    { icon: FaGithub, href: 'https://github.com/rfamiglietti' },
+    { icon: FaLinkedinIn, href: 'https://linkedin.com/in/romulopfami' },
+    { icon: FaInstagram, href: 'https://www.instagram.com/r_famiglietti' },
   ];
 
+  const container = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  };
+
   return (
-    <SectionWrapper id="about" className="py-20">
-      <div className="max-w-6xl mx-auto">
+    <SectionWrapper id="home" className="min-h-screen flex items-center justify-center pt-0 relative">
+      
+      {/* Background Decorativo */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+        <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-blue-neon/10 rounded-full blur-[120px]" />
+        <div className="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] bg-purple-neon/10 rounded-full blur-[100px]" />
+      </div>
+
+      <div className="w-full max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-between relative z-10">
         
-        <div className="mb-16">
-          <span className="font-mono text-blue-neon text-lg tracking-wider">
-            01. // SOBRE MIM
-          </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mt-2">
-            Quem é <span className="text-purple-neon">Rômulo?</span>
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-          
-          {/* Coluna da Esquerda: FOTO + TEXTO */}
-          <motion.div 
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            className="space-y-8"
-          >
-            {/* === NOVA FOTO DO ABOUT === */}
-            <div className="w-full h-72 rounded-2xl overflow-hidden border-2 border-gray-800 relative group shadow-2xl">
-              <div className="absolute inset-0 bg-blue-neon/20 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
-              <img 
-                src="/portifolio/romulodev.jpg" 
-                alt="Rômulo programando" 
-                className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
-              />
-            </div>
-
-            <div className="text-gray-300 text-lg leading-relaxed space-y-6">
-              <p>
-                Transformo ideias em software, problemas em soluções e complexidade em simplicidade. 
-                Acredito que bons sistemas nascem da combinação entre <strong className="text-white">lógica, organização e empatia pelo usuário</strong>.
-              </p>
-              
-              <p>
-                Sou Técnico em Desenvolvimento de Sistemas pelo <strong className="text-blue-neon">SENAI Morvan Figueiredo</strong> e graduando em 
-                <strong className="text-purple-neon"> Engenharia de Software</strong>, com foco em desenvolvimento web e aplicações full stack.
-              </p>
-
-              <p>
-                Gosto de tecnologia que funciona, escala e resolve. Meu objetivo é continuar evoluindo tecnicamente enquanto entrego valor real através de código limpo e eficiente.
-              </p>
-            </div>
+        {/* Lado Esquerdo */}
+        <motion.div
+          variants={container}
+          initial="hidden"
+          animate="visible"
+          className="lg:w-1/2 text-center lg:text-left"
+        >
+          <motion.div variants={item} className="mb-4 inline-block px-3 py-1 bg-[#161b22] border border-gray-700 rounded-full">
+             <span className="font-mono text-gray-400 text-sm">
+               // Welcome to my portfolio
+             </span>
           </motion.div>
 
-          {/* Coluna da Direita: Tech Stack */}
-          <div className="space-y-8">
-            {skills.map((group, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <h3 className="text-white font-bold mb-4 border-l-4 border-blue-neon pl-3 text-lg">
-                  {group.category}
-                </h3>
-                <div className="grid grid-cols-3 sm:grid-cols-4 gap-3">
-                  {group.techs.map((tech, i) => (
-                    <div 
-                      key={i} 
-                      className="group flex flex-col items-center justify-center p-3 bg-[#161b22] border border-gray-800 rounded-lg hover:border-purple-neon/50 transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-purple-neon/10"
-                      title={tech.name}
-                    >
-                      <tech.icon className={`text-3xl ${tech.color} mb-2 group-hover:scale-110 transition-transform`} />
-                      <span className="text-xs text-gray-400 group-hover:text-white font-mono text-center">
-                        {tech.name}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          <motion.h1
+            className="text-5xl md:text-7xl font-extrabold mb-6 leading-tight font-display text-white"
+            variants={item}
+          >
+            Rômulo <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-neon to-purple-neon">Famiglietti</span>
+          </motion.h1>
 
-        </div>
+          <motion.div variants={item} className="h-8 mb-6 font-mono text-xl md:text-2xl text-gray-300">
+            &gt; {text}
+            <span className="animate-pulse text-purple-neon">|</span>
+          </motion.div>
+
+          {/* === NOVO TEXTO AQUI === */}
+          <motion.p className="text-lg text-gray-400 mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed" variants={item}>
+            Desenvolvedor em formação em <strong className="text-white">Engenharia de Software</strong>, com foco em desenvolvimento web e construção de aplicações eficientes. 
+            Experiência com <strong className="text-blue-neon">Python, React, SQL Server</strong> e outras tecnologias, criando interfaces modernas e sistemas bem estruturados. 
+            Busco unir qualidade técnica, boa experiência do usuário e código limpo, com mentalidade prática e foco em resolução de problemas.
+          </motion.p>
+
+          <motion.div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10" variants={item}>
+            <ScrollLink to="projects" smooth={true} duration={500} offset={-80}>
+              <NeonButton primary={true}>
+                <span className="flex items-center gap-2">
+                  Ver Projetos <FaArrowRight />
+                </span>
+              </NeonButton>
+            </ScrollLink>
+            
+            <a href="cvportifolio.pdf" download="Romulo_CV.pdf">
+              <NeonButton primary={false}>
+                <span className="flex items-center gap-2">
+                  Baixar Currículo <FaFileDownload />
+                </span>
+              </NeonButton>
+            </a>
+          </motion.div>
+
+          <motion.div className="flex gap-6 justify-center lg:justify-start" variants={item}>
+            {socialLinks.map((link, index) => (
+              <motion.a
+                key={index}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-2xl text-gray-400 hover:text-white transition-colors duration-300"
+                whileHover={{ scale: 1.2, color: '#58a6ff' }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <link.icon />
+              </motion.a>
+            ))}
+          </motion.div>
+        </motion.div>
+
+        {/* Lado Direito */}
+        <motion.div
+          className="lg:w-1/2 mt-16 lg:mt-0 flex justify-center"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+        >
+          <div className="relative w-72 h-72 md:w-96 md:h-96 group">
+            <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-blue-neon to-purple-neon opacity-20 blur-2xl group-hover:opacity-40 transition-opacity duration-500 animate-pulse"></div>
+            
+            <img
+              src="devpixelart.png" 
+              alt="Rômulo Famiglietti"
+              className="relative w-full h-full object-cover rounded-full border-2 border-gray-700 group-hover:border-blue-neon transition-colors duration-500 shadow-2xl"
+            />
+          </div>
+        </motion.div>
+
       </div>
     </SectionWrapper>
   );
 };
 
-export default About;
+export default Home;
