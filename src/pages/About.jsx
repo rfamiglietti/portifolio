@@ -3,14 +3,13 @@ import { motion } from 'framer-motion';
 import { 
   SiHtml5, SiCss3, SiJavascript, SiPython, SiCplusplus, 
   SiArduino, SiGit, SiGithub, SiTailwindcss, SiFigma, 
-  SiDjango, SiMicrosoftsqlserver, SiNodedotjs, SiVisualstudiocode, 
+  SiDjango, SiMicrosoft, SiNodedotjs, SiVisualstudiocode, // <--- MUDANÇA AQUI (SiMicrosoft)
   SiReact, SiN8n 
 } from 'react-icons/si';
 import SectionWrapper from '../components/SectionWrapper';
 
 const About = () => {
   
-  // Lista organizada por categorias
   const skills = [
     {
       category: "Frontend",
@@ -28,7 +27,7 @@ const About = () => {
         { name: "Python", icon: SiPython, color: "text-blue-300" },
         { name: "Django", icon: SiDjango, color: "text-green-500" },
         { name: "Node.js", icon: SiNodedotjs, color: "text-green-600" },
-        { name: "SQL Server", icon: SiMicrosoftsqlserver, color: "text-red-500" },
+        { name: "SQL Server", icon: SiMicrosoft, color: "text-red-500" }, // <--- MUDANÇA AQUI
         { name: "C++", icon: SiCplusplus, color: "text-blue-600" },
       ]
     },
@@ -49,7 +48,6 @@ const About = () => {
     <SectionWrapper id="about" className="py-20">
       <div className="max-w-6xl mx-auto">
         
-        {/* Cabeçalho */}
         <div className="mb-16">
           <span className="font-mono text-blue-neon text-lg tracking-wider">
             01. // SOBRE MIM
@@ -61,7 +59,6 @@ const About = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           
-          {/* Coluna da Esquerda: Texto Bio */}
           <motion.div 
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -83,7 +80,6 @@ const About = () => {
             </p>
           </motion.div>
 
-          {/* Coluna da Direita: Tech Stack */}
           <div className="space-y-8">
             {skills.map((group, index) => (
               <motion.div
