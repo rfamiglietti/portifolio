@@ -3,10 +3,10 @@ import { motion } from 'framer-motion';
 import { 
   SiHtml5, SiCss3, SiJavascript, SiPython, SiCplusplus, 
   SiArduino, SiGit, SiGithub, SiTailwindcss, SiFigma, 
-  SiDjango, SiNodedotjs, // Removi SiVisualstudiocode daqui
-  SiReact, SiN8n 
+  SiDjango, SiNodedotjs, 
+  SiReact // Removi SiN8n daqui
 } from 'react-icons/si';
-// Importando ícones seguros (FaDatabase e FaCode)
+// Ícones seguros
 import { FaDatabase, FaCode } from 'react-icons/fa'; 
 import SectionWrapper from '../components/SectionWrapper';
 
@@ -38,10 +38,9 @@ const About = () => {
       techs: [
         { name: "Git", icon: SiGit, color: "text-orange-600" },
         { name: "GitHub", icon: SiGithub, color: "text-white" },
-        // Usei FaCode aqui para garantir o build
-        { name: "VS Code", icon: FaCode, color: "text-blue-500" }, 
+        { name: "VS Code", icon: FaCode, color: "text-blue-500" },
         { name: "Figma", icon: SiFigma, color: "text-purple-400" },
-        { name: "N8N", icon: SiN8n, color: "text-red-400" },
+        // Removi o item do N8N completamente daqui
         { name: "Arduino", icon: SiArduino, color: "text-teal-500" },
       ]
     }
