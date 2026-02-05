@@ -1,33 +1,40 @@
 import { 
-  SiDjango, SiPython, SiPostgresql, SiBootstrap, SiReact, SiTailwindcss, SiArduino, SiCplusplus
+  SiDjango, SiPython, SiPostgresql, SiBootstrap, SiReact, SiTailwindcss, SiArduino, SiCplusplus, SiFigma, SiNotion
 } from 'react-icons/si';
 
-// CORREÇÃO: O nome deve ser igual ao do seu repositório no GitHub
 const BASE_PATH = "/portifolio";
 
 export const projectsData = [
   {
     id: 1,
-    title: "Senai School Manager",
-    cover: `${BASE_PATH}/prints/senaimenu.jpg`, 
-    shortDescription: "Sistema de gestão escolar completo. Desenvolvido para resolver a complexidade de turmas, notas e faltas, oferecendo painéis exclusivos para alunos, professores e coordenação.",
+    title: "SENAI School Manager",
+    cover: `${BASE_PATH}/prints/senaimenu.jpg`,
+    shortDescription: "Plataforma centralizada para gestão escolar. Soluciona a fragmentação de dados unificando matrículas, notas e relatórios em um ambiente seguro e intuitivo.",
     fullDescription: `
-      Este projeto foi desenvolvido para resolver a complexidade da gestão acadêmica no SENAI. 
-      O objetivo era criar um sistema centralizado onde Secretaria, Coordenação, Professores e Alunos tivessem visões personalizadas e seguras.
-
-      Utilizando a robustez do Django no backend e a flexibilidade do Supabase (PostgreSQL), implementei um sistema de controle de acesso (RBAC) rigoroso.
+      🚩 **A Problemática**
+      Muitas escolas ainda dependem de soluções fragmentadas e planilhas que não se comunicam. Isso gera duplicação de dados, erros frequentes e lentidão na tomada de decisão.
+      
+      💡 **A Solução**
+      O SENAI School Manager centraliza todas as informações acadêmicas e administrativas. Desenvolvi uma arquitetura baseada em **Django** e **Django REST Framework** para garantir segurança e escalabilidade.
+      
+      🧠 **Diferenciais Técnicos:**
+      O sistema utiliza bibliotecas avançadas como *django-crispy-forms* para formulários, *reportlab* e *openpyxl* para geração de relatórios (PDF/Excel) e *django-import-export* para manipulação de dados em massa.
+      
+      🚀 **Impacto:**
+      O projeto demonstra a capacidade de traduzir problemas reais em soluções digitais, cobrindo todo o ciclo de vida do software, desde a prototipagem no Figma até a implementação de uma API robusta.
     `,
     techs: [
       { icon: SiDjango, name: "Django", color: "text-green-600" },
       { icon: SiPython, name: "Python", color: "text-blue-500" },
-      { icon: SiPostgresql, name: "Supabase", color: "text-blue-300" },
+      { icon: SiPostgresql, name: "PostgreSQL", color: "text-blue-300" },
       { icon: SiBootstrap, name: "Bootstrap", color: "text-purple-500" },
     ],
     features: [
-      "Painéis exclusivos para Aluno, Professor e Secretaria",
-      "Lançamento de Notas e Frequência em tempo real",
-      "Visualização de Boletim e Histórico Escolar",
-      "Gestão Financeira para Secretaria"
+      "Dashboards personalizados (Aluno, Prof., Adm)",
+      "Relatórios dinâmicos (PDF e Excel)",
+      "API REST para integração",
+      "Gestão completa de Notas e Frequência",
+      "Controle de Matrículas e Turmas"
     ],
     images: [
       `${BASE_PATH}/prints/senaimenu.jpg`,
@@ -40,7 +47,10 @@ export const projectsData = [
       `${BASE_PATH}/prints/cordenacaovisao.png`,
       `${BASE_PATH}/prints/secretariafinanceiro.png`
     ],
-    github: "https://github.com/rfamiglietti/SENAI-School-Manager",
+    // LINKS NOVOS
+    github: "https://github.com/DEVMarlosGomes/SENAI-School-Manager",
+    docs: "https://bird-toothpaste-81f.notion.site/Documenta-o-Sistema-de-Gest-o-Escolar-Avan-ado-SENAI-School-Manager-2a595238c1de808c8d64d80f480810dc",
+    figma: "https://www.figma.com/design/dwgi1BfnxjwinRnYUWbphL/Gest%C3%A3o-Escolar---Prot%C3%B3tipo?t=GzcPZeOp8QGEunwR-1",
     demo: null, 
   },
   {
@@ -60,6 +70,8 @@ export const projectsData = [
     features: ["Design Responsivo", "Galeria Interativa", "Formulário AJAX"],
     images: [], 
     github: "https://github.com/rfamiglietti/portfolio",
+    docs: null,
+    figma: null,
     demo: "https://rfamiglietti.github.io/portfolio/",
   },
   {
@@ -78,6 +90,8 @@ export const projectsData = [
     features: ["Detecção automática", "Controle de servo", "Lógica C++"],
     images: [], 
     github: null,
+    docs: null,
+    figma: null,
     demo: null,
   }
 ];

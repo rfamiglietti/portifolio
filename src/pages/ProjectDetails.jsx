@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaGithub, FaExternalLinkAlt, FaArrowLeft, FaTimes, FaCheckCircle, FaImages } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt, FaArrowLeft, FaTimes, FaCheckCircle, FaImages, FaFigma, FaFileAlt } from 'react-icons/fa'; // Importei novos ícones
 import { projectsData } from '../data/projectsData';
 
 const ProjectDetails = () => {
@@ -24,12 +24,12 @@ const ProjectDetails = () => {
   `;
 
   return (
-    <div className="min-h-screen bg-[#0d1117] text-white w-full">
+    <div className="min-h-screen bg-[#0d1117] text-white w-full overflow-x-hidden">
       
       <div className="flex flex-col lg:flex-row w-full min-h-screen">
         
         {/* SIDEBAR */}
-        <div className="lg:w-[400px] xl:w-[450px] flex-shrink-0 p-8 lg:p-10 lg:h-screen lg:sticky lg:top-0 bg-[#161b22] border-r border-gray-800 flex flex-col overflow-y-auto scrollbar-hide z-20 shadow-2xl">
+        <div className="lg:w-[400px] xl:w-[450px] flex-shrink-0 p-8 lg:p-10 lg:h-screen lg:sticky lg:top-0 bg-[#161b22] border-r border-gray-800 flex flex-col overflow-y-auto [&::-webkit-scrollbar]:hidden z-20 shadow-2xl">
           
           <Link to="/" className="inline-flex items-center gap-2 text-gray-400 hover:text-blue-neon mb-8 transition-colors text-sm font-mono group">
             <FaArrowLeft className="group-hover:-translate-x-1 transition-transform"/> Voltar para Home
@@ -46,6 +46,7 @@ const ProjectDetails = () => {
               ))}
             </div>
 
+            {/* Descrição agora aceita Markdown simples (negrito) através do whitespace-pre-line e formatação do texto */}
             <div className="space-y-6 text-gray-300 leading-relaxed text-sm mb-8">
                <p className="whitespace-pre-line">{project.fullDescription}</p>
             </div>
@@ -64,14 +65,34 @@ const ProjectDetails = () => {
               </div>
             )}
 
-            {/* BOTÕES ORIGINAIS */}
-            <div className="mt-auto pt-6 border-t border-gray-700 flex flex-col gap-4">
+            {/* === BOTÕES DE AÇÃO (ATUALIZADO) === */}
+            <div className="mt-auto pt-6 border-t border-gray-700 flex flex-col gap-3">
+               
+               {/* GitHub */}
                {project.github && (
                  <a href={project.github} target="_blank" rel="noopener noreferrer" 
                     className={`${btnClass} text-gray-300 border-gray-600 bg-gray-800 hover:bg-white hover:text-black hover:border-white`}>
                    <FaGithub size={18} /> Ver Código Fonte
                  </a>
                )}
+
+               {/* Documentação (Notion) */}
+               {project.docs && (
+                 <a href={project.docs} target="_blank" rel="noopener noreferrer" 
+                    className={`${btnClass} text-gray-200 border-gray-500 bg-[#2d2d2d] hover:bg-gray-200 hover:text-black hover:border-gray-200`}>
+                   <FaFileAlt size={16} /> Ler Documentação
+                 </a>
+               )}
+
+               {/* Design (Figma) */}
+               {project.figma && (
+                 <a href={project.figma} target="_blank" rel="noopener noreferrer" 
+                    className={`${btnClass} text-pink-400 border-pink-500/30 bg-pink-500/10 hover:bg-pink-500 hover:text-white hover:border-pink-500`}>
+                   <FaFigma size={16} /> Ver Protótipo (Figma)
+                 </a>
+               )}
+
+               {/* Demo Online */}
                {project.demo && (
                  <a href={project.demo} target="_blank" rel="noopener noreferrer" 
                     className={`${btnClass} text-white border-blue-600 bg-blue-600 hover:bg-blue-500 hover:border-blue-500 hover:shadow-blue-500/30`}>
@@ -82,8 +103,8 @@ const ProjectDetails = () => {
           </motion.div>
         </div>
 
-        {/* GALERIA */}
-        <div className="flex-1 bg-[#0d1117] w-full">
+        {/* GALERIA (Mantida igual) */}
+        <div className="flex-1 bg-[#0d1117] w-full min-h-screen">
            <div className="p-4 md:p-12 max-w-6xl mx-auto">
               <h2 className="text-2xl font-bold mb-8 flex items-center gap-3 text-white">
                  <span className="w-1 h-8 bg-purple-neon rounded-full shadow-[0_0_10px_#bc8cff]"></span> 
