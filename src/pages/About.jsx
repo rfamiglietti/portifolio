@@ -4,9 +4,8 @@ import {
   SiHtml5, SiCss3, SiJavascript, SiPython, SiCplusplus, 
   SiArduino, SiGit, SiGithub, SiTailwindcss, SiFigma, 
   SiDjango, SiNodedotjs, 
-  SiReact // Removi SiN8n daqui
+  SiReact 
 } from 'react-icons/si';
-// Ícones seguros
 import { FaDatabase, FaCode } from 'react-icons/fa'; 
 import SectionWrapper from '../components/SectionWrapper';
 
@@ -40,7 +39,6 @@ const About = () => {
         { name: "GitHub", icon: SiGithub, color: "text-white" },
         { name: "VS Code", icon: FaCode, color: "text-blue-500" },
         { name: "Figma", icon: SiFigma, color: "text-purple-400" },
-        // Removi o item do N8N completamente daqui
         { name: "Arduino", icon: SiArduino, color: "text-teal-500" },
       ]
     }
@@ -61,27 +59,48 @@ const About = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           
+          {/* Coluna da Esquerda: FOTO + TEXTO */}
           <motion.div 
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="space-y-6 text-gray-300 text-lg leading-relaxed"
+            className="space-y-8"
           >
-            <p>
-              Transformo ideias em software, problemas em soluções e complexidade em simplicidade. 
-              Acredito que bons sistemas nascem da combinação entre <strong className="text-white">lógica, organização e empatia pelo usuário</strong>.
-            </p>
-            
-            <p>
-              Sou Técnico em Desenvolvimento de Sistemas pelo <strong className="text-blue-neon">SENAI Morvan Figueiredo</strong> e graduando em 
-              <strong className="text-purple-neon"> Engenharia de Software</strong>, com foco em desenvolvimento web e aplicações full stack.
-            </p>
+            {/* === FOTO AJUSTADA === */}
+            {/* Removi h-72 e adicionei aspect ratio automático e limites seguros */}
+            <div className="w-full relative group rounded-2xl overflow-hidden border-2 border-gray-800 shadow-2xl">
+              {/* Overlay suave para não escurecer demais */}
+              <div className="absolute inset-0 bg-blue-neon/10 group-hover:bg-transparent transition-colors duration-500 z-10 pointer-events-none"></div>
+              
+              <img 
+                src="/portifolio/romulodev.jpg" 
+                alt="Rômulo programando" 
+                // h-auto: Altura automática (não achata)
+                // w-full: Largura total da coluna
+                // object-cover: Garante preenchimento sem distorção
+                // object-top: Garante que o rosto/topo da foto não corte
+                className="w-full h-auto max-h-[600px] object-cover object-top transform group-hover:scale-105 transition-transform duration-700"
+              />
+            </div>
 
-            <p>
-              Gosto de tecnologia que funciona, escala e resolve. Meu objetivo é continuar evoluindo tecnicamente enquanto entrego valor real através de código limpo e eficiente.
-            </p>
+            <div className="text-gray-300 text-lg leading-relaxed space-y-6">
+              <p>
+                Transformo ideias em software, problemas em soluções e complexidade em simplicidade. 
+                Acredito que bons sistemas nascem da combinação entre <strong className="text-white">lógica, organização e empatia pelo usuário</strong>.
+              </p>
+              
+              <p>
+                Sou Técnico em Desenvolvimento de Sistemas pelo <strong className="text-blue-neon">SENAI Morvan Figueiredo</strong> e graduando em 
+                <strong className="text-purple-neon"> Engenharia de Software</strong>, com foco em desenvolvimento web e aplicações full stack.
+              </p>
+
+              <p>
+                Gosto de tecnologia que funciona, escala e resolve. Meu objetivo é continuar evoluindo tecnicamente enquanto entrego valor real através de código limpo e eficiente.
+              </p>
+            </div>
           </motion.div>
 
+          {/* Coluna da Direita: Tech Stack */}
           <div className="space-y-8">
             {skills.map((group, index) => (
               <motion.div
