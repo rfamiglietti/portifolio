@@ -31,18 +31,17 @@ const Projects = () => {
          <div className="mb-16 select-none relative w-full">
            <Swiper
              modules={[Navigation, Pagination, Autoplay]}
-             spaceBetween={20} // Espaço menor entre slides
+             spaceBetween={20}
              slidesPerView={1}
              navigation={{ clickable: true }}
              pagination={{ clickable: true, dynamicBullets: true }}
              autoplay={{ delay: 6000, disableOnInteraction: false }}
              loop={true}
-             // === RESPONSIVIDADE CORRIGIDA ===
              breakpoints={{
-               0: { slidesPerView: 1, spaceBetween: 10 },    // Mobile
-               640: { slidesPerView: 1, spaceBetween: 20 },  // Tablet Pequeno
-               768: { slidesPerView: 2, spaceBetween: 20 },  // Tablet Grande
-               1024: { slidesPerView: 2.2, spaceBetween: 30 }, // Desktop
+               0: { slidesPerView: 1, spaceBetween: 10 },
+               640: { slidesPerView: 1, spaceBetween: 20 },
+               768: { slidesPerView: 2, spaceBetween: 20 },
+               1024: { slidesPerView: 2.2, spaceBetween: 30 },
              }}
              className="pb-20 pt-10 px-2"
            >
@@ -79,20 +78,17 @@ const Projects = () => {
                        </p>
 
                        <Link to={`/project/${project.id}`} className="mt-auto block w-full">
-                         {/* === BOTÃO VER DETALHES (SÓLIDO/FLAT) === */}
-                         {/* Removi o Keycap Outline. Agora é um botão sólido moderno. */}
+                         {/* BOTÃO VER DETALHES (Sólido com animação de clique) */}
                          <button className="
-                           w-full py-3 rounded-lg font-bold text-sm font-mono tracking-wider transition-all duration-200
+                           w-full py-3 rounded-lg font-bold text-sm font-mono tracking-wider transition-all duration-100
                            flex items-center justify-center gap-2
-                           
-                           /* Estilo Normal */
                            bg-gray-800 text-white border border-gray-700
                            
-                           /* Hover: Fica Azul Neon Sólido */
-                           hover:bg-blue-600 hover:border-blue-500 hover:text-white hover:shadow-lg hover:shadow-blue-900/40
+                           /* Hover: Brilho Azul */
+                           hover:bg-blue-600 hover:border-blue-500 hover:shadow-lg hover:shadow-blue-900/40
                            
-                           /* Active: Clique simples */
-                           active:scale-[0.98]
+                           /* Active (Clique): Afunda levemente */
+                           active:scale-[0.96] active:bg-blue-700
                          ">
                            VER DETALHES <FaArrowRight />
                          </button>
@@ -115,62 +111,63 @@ const Projects = () => {
 
       </div>
       
-      {/* === CSS FORÇADO PARA SWIPER === */}
+      {/* === CSS DAS SETAS ESTILO KEYCAP BRANCO (IGUAL À IMAGEM) === */}
       <style>{`
         .swiper-pagination-bullet { 
             background-color: #58a6ff !important; 
-            opacity: 0.3; 
-            width: 10px; height: 10px; 
-            transition: all 0.3s;
+            opacity: 0.3; width: 10px; height: 10px; transition: all 0.3s;
         }
         .swiper-pagination-bullet-active { 
             background-color: #bc8cff !important; 
-            opacity: 1; 
-            width: 20px; 
-            border-radius: 5px;
+            opacity: 1; width: 20px; border-radius: 5px;
         }
 
-        /* Setas como Teclas Mecânicas (USANDO !IMPORTANT PARA FORÇAR) */
+        /* SETAS: Estilo Tecla Mecânica Branca/Preta */
         .swiper-button-next, .swiper-button-prev {
-            width: 50px !important;
-            height: 50px !important;
-            background-color: #21262d !important;
-            border: 1px solid #30363d !important;
-            border-bottom: 5px solid #0d1117 !important;
-            border-radius: 12px !important;
-            color: #58a6ff !important;
-            transition: all 0.1s !important;
+            width: 54px !important;
+            height: 54px !important;
+            
+            /* Fundo Preto */
+            background-color: #0d1117 !important;
+            
+            /* Borda Branca Fina */
+            border: 2px solid white !important;
+            
+            /* Borda Branca Grossa em Baixo (Efeito 3D) */
+            border-bottom: 6px solid white !important;
+            
+            border-radius: 14px !important;
+            color: white !important;
+            transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1) !important;
             display: flex !important;
             align-items: center !important;
             justify-content: center !important;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5) !important;
             z-index: 50;
+            opacity: 0.8;
         }
 
-        /* Efeito de Clique na Seta */
-        .swiper-button-next:active, .swiper-button-prev:active {
-            transform: translateY(4px) !important;
-            border-bottom-width: 0px !important;
-            box-shadow: none !important;
-        }
-
-        /* Hover na Seta */
+        /* Hover: Fica mais brilhante/branco */
         .swiper-button-next:hover, .swiper-button-prev:hover {
-            background-color: #30363d !important;
-            color: #bc8cff !important;
+            opacity: 1;
+            background-color: #161b22 !important;
+            transform: translateY(-2px); /* Levanta um pouquinho antes de clicar */
+        }
+
+        /* Clique (Active): Afunda */
+        .swiper-button-next:active, .swiper-button-prev:active {
+            transform: translateY(6px) !important; /* Desce */
+            border-bottom-width: 0px !important;   /* Borda grossa some */
+            transition: all 0.05s !important;
         }
 
         /* Ícone da seta */
         .swiper-button-next::after, .swiper-button-prev::after {
-            font-size: 20px !important;
+            font-size: 22px !important;
             font-weight: bold !important;
         }
 
-        /* Oculta no mobile para não atrapalhar o touch */
         @media (max-width: 640px) {
-            .swiper-button-next, .swiper-button-prev {
-                display: none !important;
-            }
+            .swiper-button-next, .swiper-button-prev { display: none !important; }
         }
       `}</style>
     </SectionWrapper>
