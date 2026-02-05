@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter as Router, Routes, Route } from 'react-router-dom'; // Use HashRouter para evitar erro no GitHub Pages
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -7,9 +7,10 @@ import About from './pages/About';
 import Projects from './pages/Projects';
 import Services from './pages/Services';
 import Contact from './pages/Contact';
-import AllProjects from './pages/AllProjects'; // Nova página
+import AllProjects from './pages/AllProjects';
+import ProjectDetails from './pages/ProjectDetails'; // IMPORTAR AQUI
 
-// Componente Wrapper para a Página Única (Landing Page)
+// Layout padrão para a Home
 const LandingPage = () => (
   <>
     <Navbar />
@@ -29,11 +30,9 @@ function App() {
     <Router>
       <div className="bg-[#0d1117] min-h-screen text-white pb-20 lg:pb-0 lg:pl-20">
         <Routes>
-          {/* Rota da Home (Página Principal) */}
           <Route path="/" element={<LandingPage />} />
-          
-          {/* Rota da Página Separada */}
           <Route path="/all-projects" element={<AllProjects />} />
+          <Route path="/project/:id" element={<ProjectDetails />} /> 
         </Routes>
       </div>
     </Router>
