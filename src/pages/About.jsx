@@ -3,10 +3,11 @@ import { motion } from 'framer-motion';
 import { 
   SiHtml5, SiCss3, SiJavascript, SiPython, SiCplusplus, 
   SiArduino, SiGit, SiGithub, SiTailwindcss, SiFigma, 
-  SiDjango, SiNodedotjs, SiVisualstudiocode, // Removi SiMicrosoft daqui
+  SiDjango, SiNodedotjs, // Removi SiVisualstudiocode daqui
   SiReact, SiN8n 
 } from 'react-icons/si';
-import { FaDatabase } from 'react-icons/fa'; // Adicionei este import seguro
+// Importando ícones seguros (FaDatabase e FaCode)
+import { FaDatabase, FaCode } from 'react-icons/fa'; 
 import SectionWrapper from '../components/SectionWrapper';
 
 const About = () => {
@@ -28,7 +29,6 @@ const About = () => {
         { name: "Python", icon: SiPython, color: "text-blue-300" },
         { name: "Django", icon: SiDjango, color: "text-green-500" },
         { name: "Node.js", icon: SiNodedotjs, color: "text-green-600" },
-        // Usei FaDatabase aqui para garantir que não quebre o build
         { name: "SQL Server", icon: FaDatabase, color: "text-red-500" }, 
         { name: "C++", icon: SiCplusplus, color: "text-blue-600" },
       ]
@@ -38,7 +38,8 @@ const About = () => {
       techs: [
         { name: "Git", icon: SiGit, color: "text-orange-600" },
         { name: "GitHub", icon: SiGithub, color: "text-white" },
-        { name: "VS Code", icon: SiVisualstudiocode, color: "text-blue-500" },
+        // Usei FaCode aqui para garantir o build
+        { name: "VS Code", icon: FaCode, color: "text-blue-500" }, 
         { name: "Figma", icon: SiFigma, color: "text-purple-400" },
         { name: "N8N", icon: SiN8n, color: "text-red-400" },
         { name: "Arduino", icon: SiArduino, color: "text-teal-500" },
