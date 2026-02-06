@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedinIn, FaInstagram, FaArrowRight, FaFileDownload } from 'react-icons/fa';
+import { FaGithub, FaLinkedinIn, FaInstagram, FaArrowRight, FaFileDownload, FaVolumeUp, FaVolumeMute } from 'react-icons/fa';
 import { Link as ScrollLink } from 'react-scroll';
 import SectionWrapper from '../components/SectionWrapper';
 import NeonButton from '../components/NeonButton';
@@ -11,6 +11,10 @@ const Home = () => {
   const [loopNum, setLoopNum] = useState(0);
   const [delta, setDelta] = useState(100);
   
+  // Estado para controlar o som do vídeo
+  const [isMuted, setIsMuted] = useState(true);
+  const videoRef = useRef(null);
+
   const toRotate = ["Full Stack Developer", "React & Django", "Engenharia de Software"];
   const period = 2000;
 
@@ -45,6 +49,13 @@ const Home = () => {
     }
   };
 
+  const toggleAudio = () => {
+    setIsMuted(!isMuted);
+    if(videoRef.current) {
+      videoRef.current.muted = !videoRef.current.muted;
+    }
+  };
+
   const socialLinks = [
     { icon: FaGithub, href: 'https://github.com/rfamiglietti' },
     { icon: FaLinkedinIn, href: 'https://linkedin.com/in/romulopfami' },
@@ -62,7 +73,7 @@ const Home = () => {
   };
 
   return (
-    <SectionWrapper id="home" className="min-h-screen flex items-center justify-center pt-0 relative">
+    <SectionWrapper id="home" className="min-h-screen flex items-center justify-center pt-0 relative overflow-hidden">
       
       {/* Background Decorativo */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
@@ -70,14 +81,14 @@ const Home = () => {
         <div className="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] bg-purple-neon/10 rounded-full blur-[100px]" />
       </div>
 
-      <div className="w-full max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-between relative z-10">
+      <div className="w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between relative z-10 px-4">
         
-        {/* Lado Esquerdo */}
+        {/* Lado Esquerdo (Texto) */}
         <motion.div
           variants={container}
           initial="hidden"
           animate="visible"
-          className="lg:w-1/2 text-center lg:text-left"
+          className="lg:w-1/2 text-center lg:text-left z-20"
         >
           <motion.div variants={item} className="mb-4 inline-block px-3 py-1 bg-[#161b22] border border-gray-700 rounded-full">
              <span className="font-mono text-gray-400 text-sm">
@@ -97,7 +108,6 @@ const Home = () => {
             <span className="animate-pulse text-purple-neon">|</span>
           </motion.div>
 
-          {/* === NOVO TEXTO AQUI === */}
           <motion.p className="text-lg text-gray-400 mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed" variants={item}>
             Desenvolvedor em formação em <strong className="text-white">Engenharia de Software</strong>, com foco em desenvolvimento web e construção de aplicações eficientes. 
             Experiência com <strong className="text-blue-neon">Python, React, SQL Server</strong> e outras tecnologias, criando interfaces modernas e sistemas bem estruturados. 
@@ -139,21 +149,47 @@ const Home = () => {
           </motion.div>
         </motion.div>
 
-        {/* Lado Direito */}
+        {/* Lado Direito (VÍDEO) */}
         <motion.div
-          className="lg:w-1/2 mt-16 lg:mt-0 flex justify-center"
+          
+          className="lg:w-1/2 mt-16 lg:mt-0 flex justify-center lg:justify-end lg:pl-16"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.5 }}
         >
-          <div className="relative w-72 h-72 md:w-96 md:h-96 group">
-            <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-blue-neon to-purple-neon opacity-20 blur-2xl group-hover:opacity-40 transition-opacity duration-500 animate-pulse"></div>
+          {/* Aumentei o tamanho de w-96 para w-[450px] (aprox) para ficar maior */}
+          <div className="relative w-80 h-80 md:w-[480px] md:h-[480px] group">
             
-            <img
-              src="devpixelart.png" 
-              alt="Rômulo Famiglietti"
-              className="relative w-full h-full object-cover rounded-full border-2 border-gray-700 group-hover:border-blue-neon transition-colors duration-500 shadow-2xl"
-            />
+            {/* Glow de fundo */}
+            <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-blue-neon to-purple-neon opacity-20 blur-3xl group-hover:opacity-40 transition-opacity duration-500 animate-pulse"></div>
+            
+            {/* Container Redondo do Vídeo */}
+            <div className="relative w-full h-full rounded-full border-4 border-gray-800 group-hover:border-blue-neon transition-colors duration-500 shadow-2xl overflow-hidden bg-black">
+              
+              {/* VÍDEO TAG */}
+              <video
+                ref={videoRef}
+                autoPlay
+                loop
+                muted={isMuted} // Começa mudo por obrigação do navegador
+                playsInline
+                className="w-full h-full object-cover scale-110" // scale-110 remove bordas pretas se houver
+              >
+                {/* Certifique-se de colocar o arquivo na pasta public/portifolio/pixel-art.mp4 */}
+                <source src="/portifolio/public/pixel-art.mp4" type="video/mp4" />
+                Seu navegador não suporta vídeos.
+              </video>
+
+              {/* Botão de Controle de Som */}
+              <button 
+                onClick={toggleAudio}
+                className="absolute bottom-6 right-6 p-3 rounded-full bg-black/60 text-white hover:bg-blue-neon hover:text-black transition-all border border-white/20 hover:scale-110 z-30"
+                title={isMuted ? "Ativar Som" : "Mudo"}
+              >
+                {isMuted ? <FaVolumeMute size={20} /> : <FaVolumeUp size={20} />}
+              </button>
+
+            </div>
           </div>
         </motion.div>
 
