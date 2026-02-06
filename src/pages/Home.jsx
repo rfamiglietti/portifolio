@@ -11,7 +11,6 @@ const Home = () => {
   const [loopNum, setLoopNum] = useState(0);
   const [delta, setDelta] = useState(100);
   
-  // Estado para controlar o som do vídeo
   const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef(null);
 
@@ -75,7 +74,6 @@ const Home = () => {
   return (
     <SectionWrapper id="home" className="min-h-screen flex items-center justify-center pt-0 relative overflow-hidden">
       
-      {/* Background Decorativo */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
         <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-blue-neon/10 rounded-full blur-[120px]" />
         <div className="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] bg-purple-neon/10 rounded-full blur-[100px]" />
@@ -149,49 +147,47 @@ const Home = () => {
           </motion.div>
         </motion.div>
 
-        {/* Lado Direito (VÍDEO) */}
+        {/* Lado Direito (VÍDEO + BOTÃO EM BAIXO) */}
         <motion.div
-          
           className="lg:w-1/2 mt-16 lg:mt-0 flex justify-center lg:justify-end lg:pl-16"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.5 }}
         >
-          {/* Aumentei o tamanho de w-96 para w-[450px] (aprox) para ficar maior */}
-          <div className="relative w-80 h-80 md:w-[480px] md:h-[480px] group">
+          {/* Container Flex Coluna para alinhar Vídeo e Botão */}
+          <div className="flex flex-col items-center gap-6">
             
-            {/* Glow de fundo */}
-            <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-blue-neon to-purple-neon opacity-20 blur-3xl group-hover:opacity-40 transition-opacity duration-500 animate-pulse"></div>
-            
-           {/* Container Redondo do Vídeo */}
-            <div className="relative w-full h-full rounded-full border-4 border-gray-800 group-hover:border-blue-neon transition-colors duration-500 shadow-2xl overflow-hidden bg-black">
+            {/* O Vídeo */}
+            <div className="relative w-72 h-72 md:w-96 md:h-96 group">
+              <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-blue-neon to-purple-neon opacity-20 blur-3xl group-hover:opacity-40 transition-opacity duration-500 animate-pulse"></div>
               
-              {/* VÍDEO TAG */}
-              <video
-                ref={videoRef}
-                autoPlay
-                loop
-                muted={isMuted}
-                playsInline
-                // Tenta carregar a imagem da mesma pasta onde o site está
-                poster="./devpixelart.jpeg" 
-                className="w-full h-full object-cover scale-110"
-              >
-                {/* Tenta carregar o vídeo da mesma pasta */}
-                <source src="./pixel-art.mp4" type="video/mp4" />
-                Seu navegador não suporta vídeos.
-              </video>
-
-              {/* Botão de Controle de Som */}
-              <button 
-                onClick={toggleAudio}
-                className="absolute bottom-6 right-6 p-3 rounded-full bg-black/60 text-white hover:bg-blue-neon hover:text-black transition-all border border-white/20 hover:scale-110 z-30"
-                title={isMuted ? "Ativar Som" : "Mudo"}
-              >
-                {isMuted ? <FaVolumeMute size={20} /> : <FaVolumeUp size={20} />}
-              </button>
-
+              <div className="relative w-full h-full rounded-full border-4 border-gray-800 group-hover:border-blue-neon transition-colors duration-500 shadow-2xl overflow-hidden bg-black">
+                <video
+                  ref={videoRef}
+                  autoPlay
+                  loop
+                  muted={isMuted}
+                  playsInline
+                  poster="./imgperfil2.jpeg"
+                  className="w-full h-full object-cover"
+                >
+                  <source src="./pixel-art.mp4" type="video/mp4" />
+                  Seu navegador não suporta vídeos.
+                </video>
+              </div>
             </div>
+
+            {/* O Botão de Som (AGORA EM BAIXO) */}
+            <button 
+              onClick={toggleAudio}
+              className="flex items-center gap-3 px-6 py-2 rounded-full bg-[#161b22] border border-gray-700 text-gray-300 hover:border-blue-neon hover:text-blue-neon hover:bg-blue-neon/10 transition-all shadow-lg"
+            >
+              {isMuted ? <FaVolumeMute size={18} /> : <FaVolumeUp size={18} />}
+              <span className="text-sm font-mono font-bold tracking-wide">
+                {isMuted ? "ATIVAR SOM" : "MUTAR"}
+              </span>
+            </button>
+
           </div>
         </motion.div>
 
