@@ -163,7 +163,7 @@ const Home = () => {
             {/* Glow de fundo */}
             <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-blue-neon to-purple-neon opacity-20 blur-3xl group-hover:opacity-40 transition-opacity duration-500 animate-pulse"></div>
             
-            {/* Container Redondo do Vídeo */}
+           {/* Container Redondo do Vídeo */}
             <div className="relative w-full h-full rounded-full border-4 border-gray-800 group-hover:border-blue-neon transition-colors duration-500 shadow-2xl overflow-hidden bg-black">
               
               {/* VÍDEO TAG */}
@@ -171,12 +171,14 @@ const Home = () => {
                 ref={videoRef}
                 autoPlay
                 loop
-                muted={isMuted} // Começa mudo por obrigação do navegador
+                muted={isMuted}
                 playsInline
-                className="w-full h-full object-cover scale-110" // scale-110 remove bordas pretas se houver
+                // Tenta carregar a imagem da mesma pasta onde o site está
+                poster="./devpixelart.jpeg" 
+                className="w-full h-full object-cover scale-110"
               >
-                {/* Certifique-se de colocar o arquivo na pasta public/portifolio/pixel-art.mp4 */}
-                <source src="/portifolio/public/pixel-art.mp4" type="video/mp4" />
+                {/* Tenta carregar o vídeo da mesma pasta */}
+                <source src="./pixel-art.mp4" type="video/mp4" />
                 Seu navegador não suporta vídeos.
               </video>
 
