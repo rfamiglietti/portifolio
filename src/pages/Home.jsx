@@ -123,7 +123,7 @@ const Home = () => {
               </NeonButton>
             </ScrollLink>
             
-            <a href="cvportifolio.pdf" download="romulofamiglietti_curriculo.pdf">
+            <a href="romulofamiglietti_curriculo.pdf" download="romulofamiglietti_curriculo.pdf">
               <NeonButton primary={false}>
                 <span className="flex items-center gap-2">
                   Baixar Currículo <FaFileDownload />
