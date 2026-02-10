@@ -123,7 +123,7 @@ const Home = () => {
               </NeonButton>
             </ScrollLink>
             
-            <a href="romulofamiglietti_curriculo.pdf" download="romulofamiglietti_curriculo.pdf">
+            <a href="/romulofamiglietti_curriculo.pdf" download="Romulo_Famiglietti_CV.pdf">
               <NeonButton primary={false}>
                 <span className="flex items-center gap-2">
                   Baixar Currículo <FaFileDownload />
@@ -170,7 +170,10 @@ const Home = () => {
                   muted={isMuted}
                   playsInline
                   poster="./imgperfil2.jpeg"
-                  className="w-full h-full object-cover transform scale-[1.50] -translate-y-12"
+                  // AJUSTE FINAL:
+                  // scale-[1.70]: Zoom um pouquinho maior para garantir as bordas
+                  // -translate-y-8: Sobe um pouco mais que o -6 para esconder a barra preta do topo
+                  className="w-full h-full object-cover transform scale-[1.70] -translate-y-8"
                 >
                   <source src="./pixel-art.mp4" type="video/mp4" />
                   Seu navegador não suporta vídeos.
