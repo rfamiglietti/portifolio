@@ -74,12 +74,14 @@ const Home = () => {
   return (
     <SectionWrapper id="home" className="min-h-screen flex items-center justify-center pt-0 relative overflow-hidden">
       
+      {/* Background Decorativo */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
         <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-blue-neon/10 rounded-full blur-[120px]" />
         <div className="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] bg-purple-neon/10 rounded-full blur-[100px]" />
       </div>
 
-      <div className="w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between relative z-10 px-4">
+      {/* Layout Centralizado (max-w-5xl) */}
+      <div className="w-full max-w-5xl mx-auto flex flex-col lg:flex-row items-center justify-between relative z-10 px-4">
         
         {/* Lado Esquerdo (Texto) */}
         <motion.div
@@ -121,7 +123,7 @@ const Home = () => {
               </NeonButton>
             </ScrollLink>
             
-            <a href="cvportifolio.pdf" download="Romulo_CV.pdf">
+            <a href="cvportifolio.pdf" download="romulofamiglietti_curriculo.pdf">
               <NeonButton primary={false}>
                 <span className="flex items-center gap-2">
                   Baixar Currículo <FaFileDownload />
@@ -147,21 +149,20 @@ const Home = () => {
           </motion.div>
         </motion.div>
 
-        {/* Lado Direito (VÍDEO + BOTÃO EM BAIXO) */}
+        {/* Lado Direito (VÍDEO) */}
         <motion.div
-          className="lg:w-1/2 mt-16 lg:mt-0 flex justify-center lg:justify-end lg:pl-16"
+          className="lg:w-1/2 mt-16 lg:mt-0 flex justify-center lg:justify-end"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.5 }}
         >
-          {/* Container Flex Coluna para alinhar Vídeo e Botão */}
-          <div className="flex flex-col items-center gap-6">
+          <div className="flex flex-col items-center gap-6 lg:-mt-24">
             
-            {/* O Vídeo */}
-            <div className="relative w-72 h-72 md:w-96 md:h-96 group">
-              <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-blue-neon to-purple-neon opacity-20 blur-3xl group-hover:opacity-40 transition-opacity duration-500 animate-pulse"></div>
+            {/* CONTAINER */}
+            <div className="relative w-80 h-64 md:w-80 md:h-80 group">
+              <div className="absolute inset-0 rounded-3xl bg-gradient-to-tr from-blue-neon to-purple-neon opacity-20 blur-3xl group-hover:opacity-40 transition-opacity duration-500 animate-pulse"></div>
               
-              <div className="relative w-full h-full rounded-full border-4 border-gray-800 group-hover:border-blue-neon transition-colors duration-500 shadow-2xl overflow-hidden bg-black">
+              <div className="relative w-full h-full rounded-3xl border-4 border-gray-800 group-hover:border-blue-neon transition-colors duration-500 shadow-2xl overflow-hidden bg-black">
                 <video
                   ref={videoRef}
                   autoPlay
@@ -169,7 +170,7 @@ const Home = () => {
                   muted={isMuted}
                   playsInline
                   poster="./imgperfil2.jpeg"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transform scale-[1.50] -translate-y-12"
                 >
                   <source src="./pixel-art.mp4" type="video/mp4" />
                   Seu navegador não suporta vídeos.
@@ -177,7 +178,7 @@ const Home = () => {
               </div>
             </div>
 
-            {/* O Botão de Som (AGORA EM BAIXO) */}
+            {/* Botão de Som */}
             <button 
               onClick={toggleAudio}
               className="flex items-center gap-3 px-6 py-2 rounded-full bg-[#161b22] border border-gray-700 text-gray-300 hover:border-blue-neon hover:text-blue-neon hover:bg-blue-neon/10 transition-all shadow-lg"
